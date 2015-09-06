@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Codesmith Bin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/lib/codemirror.css">
+  <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/addon/fold/foldgutter.css">
+  <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/addon/dialog/dialog.css">
+  <link rel="stylesheet" href="/style.css">
+
+  <script src="/third_party/CodeMirror-4.0.3/lib/codemirror.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/search/searchcursor.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/search/search.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/dialog/dialog.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/edit/matchbrackets.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/edit/closebrackets.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/comment/comment.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/wrap/hardwrap.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/fold/foldcode.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/addon/fold/brace-fold.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/mode/javascript/javascript.js"></script>
+  <script src="/third_party/CodeMirror-4.0.3/keymap/sublime.js"></script>
+
+</head>
+<body>
+  <div id="editor"></div>
+
+  <button id="execute">Run</button>
+
+  <div id="console"></div>
+
+  <div id="instruct">
+    <%- include(challenges) %>
+  </div>
+
+  <script src="/third_party/jquery.min.js"></script>
+  <script src="/third_party/esprima.js"></script>
+  <script src="/bundle.js"></script>
+</body>
+</html>

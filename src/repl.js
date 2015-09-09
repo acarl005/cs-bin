@@ -1,6 +1,6 @@
 window.onload = function() {
 
-  window.editor = CodeMirror(document.getElementById("editor"), {
+  window.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
     lineNumbers: true,
     mode: "javascript",
     value: "",
@@ -24,12 +24,7 @@ function checkForErrors() {
 }
 
 function renderErr(lineNum, desc, colNum) {
-  var msg = document.createElement("div");
-  var icon = msg.appendChild(document.createElement("span"));
-  icon.innerHTML = "!";
-  icon.className = "lint-error-icon";
-  msg.appendChild(document.createTextNode(desc));
-  msg.className = "lint-error";
+  var msg = $(`<div class="lint-error"><span class="lint-error-icon">!</span>${desc}</div>`)[0];
   errWidgets.push(
     editor.addLineWidget(lineNum - 1, msg, { coverGutter: false, noHScroll: true })
   );

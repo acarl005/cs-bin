@@ -1,6 +1,7 @@
 module.exports = function(hasErrors) {
   $(document).ready(() => {
 
+    $('#console form').on('submit', repl);
     $('#execute').on('click', execute);
     $(window).on('keypress', e => {
       e.ctrlKey && e.keyCode && execute();   //execute if they press ctrl+b
@@ -12,7 +13,7 @@ module.exports = function(hasErrors) {
       } else if (e.keyCode === 40) {  //down arrow key
         commandIndex--;
       } else {
-        return 'fuck you';
+        return 'we can ignore this';
       }
       // make sure commandIndex stays in reasonable range
       commandIndex = Math.min(commandStack.length - 1, commandIndex);
@@ -21,11 +22,11 @@ module.exports = function(hasErrors) {
     });
   });
 
-  setTimeout(execute, 1000);
   function execute() {
-    if (hasErrors()) return alert('fix errors first');
-
     $('#console #output').empty();
+    if (hasErrors())
+      return render('<span class="error">There are errors in the editor. Fix them before executing.</span>');
+
     var code = editor.getValue();
 
     wrapLogOutput(() => {
@@ -33,33 +34,40 @@ module.exports = function(hasErrors) {
       eval(code);
 
       $('#console form').off('submit');
-      $('#console form').on('submit', e => {
-        e.preventDefault();
-        var code = $(e.target).find('input').val();
-        commandStack.unshift(code);
-        commandStack = commandStack.slice(0, 9);
-        commandIndex = -1;
-        wrapLogOutput(() => {
-          $(e.target).find('input').val('');
-          try {
-            var output = eval(code);
-            render(`=> ${output}`);
-          } catch(err) {
-            render('<span class="error">ERROR</span>');
-          }
-        });
-      });
+      $('#console form').on('submit', eval('('+String(repl)+')'));
+      // this eval/String thing is pretty weird right? It's basically a hack that Rob and I devised to "clone" a function. It takes a func, converts to a string, then redefines it in an eval. This effectively achieves dynamic scoping. By redefining it in this scope, I can access the local variables here instead of the default lexical scoping behavior. The reason I want this is so the repl has access to the variables defined in the CodeMirror editor.
 
     });
 
   }
 }
 
+//allow user to access previously entered commands
 var commandStack = [];
 var commandIndex = -1;
 
 function render(text) {
   $('#console #output').append(`<p>${text}</p>`);
+}
+
+function repl(e) {
+  e.preventDefault();
+  var code = $(e.target).find('input').val();
+  commandStack.unshift(code);
+  commandStack = commandStack.slice(0, 9);
+  commandIndex = -1;
+  wrapLogOutput(() => {
+    $(e.target).find('input').val('');
+    var evalErr;
+    var wrappedCode = `try{ ${code} } catch(err) { evalErr = err.stack }`;
+    var output = eval(wrappedCode);
+    if (evalErr) {
+      var errMessage = evalErr.match(/.*/)[0];
+      render(`<span class="error">${errMessage}</span>`);
+    } else {
+      render(`=> ${output}`);
+    }
+  });
 }
 
 // executes a function in a context where all calls to console.log will render to the DOM

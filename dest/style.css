@@ -1,41 +1,88 @@
 body {
   margin: 0;
+  height: 100vh;
+  font-family: arial;
+  min-width: 960px;
 }
 
-#execute {
-  background-color: black;
-  border: 1px solid #33CCFF;
-  color: #33CCFF;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: 0.4s;
+a {
+  text-decoration: none;
+  color: #0099FF;
 }
 
-#execute:hover {
-  color: black;
-  background-color: #33CCFF;
+ul {
+  padding: 0 20px;
+}
+
+li {
+  list-style: none;
 }
 
 #left {
   display: inline-block;
-  width: 60%;
+  width: 65%;
   height: 100%;
   background-color: black;
 }
 
 #right {
+  background: #eee;
   display: inline-block;
-  width: 39%;
+  width: 35%;
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
+  height: 99.9%;
+  overflow: auto;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  padding: 10px;
+  width: 33.3%;
+  box-sizing: border-box;
+  text-align: center;
+  border-right: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  background: -webkit-linear-gradient(#bbb, #eee);
+  background: -o-linear-gradient(#bbb, #eee);
+  background: -moz-linear-gradient(#bbb, #eee);
+  background: linear-gradient(#bbb, #eee);
+}
+
+nav li:hover {
+  background: -webkit-linear-gradient(#eee, #bbb);
+  background: -o-linear-gradient(#eee, #bbb);
+  background: -moz-linear-gradient(#eee, #bbb);
+  background: linear-gradient(#eee, #bbb);
 }
 
 .CodeMirror {
   border: solid 1px #ddd;
-  height: 60vh;
+  height: 59vh;
   min-height: 300px;
+}
+
+.lint-error {
+  font-family: arial;
+  font-size: 70%;
+  background: #FFEDFF;
+  color: #a00;
+  padding: 2px 5px 3px;
+}
+
+.lint-error-icon {
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0 3px;
+  margin-right: 7px;
 }
 
 #console {
@@ -44,9 +91,8 @@ body {
   background-color: black;
   color: #33CCFF;
   font-family: courier;
-  height: 30vh;
+  height: calc(40vh - 60px);
   overflow: auto;
-  min-height: 200px;
 }
 
 #console p {
@@ -77,21 +123,37 @@ input:focus {
   outline: 0;
 }
 
-.lint-error {
-  font-family: arial;
-  font-size: 70%;
-  background: #FFEDFF;
-  color: #a00;
-  padding: 2px 5px 3px;
+#execute {
+  background-color: black;
+  border: 1px solid #33CCFF;
+  color: #33CCFF;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.4s;
 }
 
-.lint-error-icon {
-  color: white;
-  background-color: red;
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 0 3px;
-  margin-right: 7px;
+#execute:hover {
+  color: black;
+  background-color: #33CCFF;
+}
+
+#execute:active {
+  background-color: #1F7A99;
+  border-color: #13495C;
+  transition: 0s;
+}
+
+.error {
+  color: red;
+}
+
+#instruct li {
+  margin-bottom: 15px;
+}
+
+#instruct li h4 {
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .correct::before {
@@ -100,10 +162,6 @@ input:focus {
 
 .correct {
   color: green;
-}
-
-.error {
-  color: red;
 }
 
 .animated {

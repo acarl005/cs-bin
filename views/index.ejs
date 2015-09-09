@@ -2,10 +2,11 @@
 
 <html>
 <head>
-  <title>Codesmith Bin</title>
+  <title>CS Bin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/lib/codemirror.css">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/addon/fold/foldgutter.css">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/addon/dialog/dialog.css">
@@ -26,10 +27,12 @@
 
 </head>
 <body>
-  <div id="left">
-    <div id="editor"></div>
 
-    <button id="execute">Run</button>
+  <div id="left">
+    <textarea id="editor"><%- include(challenges) %>
+</textarea>
+
+    <button id="execute">Run Code</button>
 
     <div id="console">
       <div id="output"></div>
@@ -37,11 +40,18 @@
         &gt <input type="text">
       </form>
     </div>
-  </div>
+  </div
 
-  <div id="right">
+  ><div id="right">
+    <nav>
+      <ul>
+        <a href="/challenge/callbacks"><li>CALLBACKS</li></a
+        ><a href="/challenge/objects"><li>OBJECTS</li></a
+        ><a href="/challenge/closures"><li>CLOSURES</li></a>
+      </ul>
+    </nav>
     <ul id="instruct">
-      <%- include(challenges) %>
+      <%- include(challenges + '-instruct') %>
     </ul>
   </div>
 

@@ -53,6 +53,10 @@ body {
   margin: 0;
 }
 
+#console #output {
+
+}
+
 #console form {
   position: absolute;
   bottom: 0;
@@ -96,6 +100,10 @@ input:focus {
 
 .correct {
   color: green;
+}
+
+.error {
+  color: red;
 }
 
 .animated {

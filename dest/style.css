@@ -14,8 +14,13 @@ ul {
   padding: 0 20px;
 }
 
-li {
+ul>li {
   list-style: none;
+}
+
+code {
+  background-color: #ccc;
+  border-radius: 2px;
 }
 
 #left {
@@ -147,7 +152,7 @@ input:focus {
   color: red;
 }
 
-#instruct li {
+#instruct ul>li {
   margin-bottom: 15px;
 }
 

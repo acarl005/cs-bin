@@ -1,63 +1,53 @@
 <li>
   <h4>Challenge 1</h4>
 
-  Create a function that accepts an input and adds 2 to it
+  Create a function <code>addTwo</code> that accepts one input and adds 2 to it.
 </li>
 
 
 <li>
   <h4>Challenge 2</h4>
 
-  Create a function that accepts an input and adds an "s" to it
+  Create a function <code>addS</code> that accepts one input and adds an "s" to it.
 </li>
 
 
-
 <li>
-  Challenge 3
-  Create a function called 'map' that:
-  1. takes in an array of numbers (a list of numbers)
-  2. takes in a 'callback' function - a function that is applied to each element of the array (inside of the function 'map')
+  <h4>Challenge 3</h4>
+  Create a function called <code>map</code> that takes two inputs:<br/>
+  <ol>
+    <li>an array of numbers (a list of numbers)</li>
+    <li>a 'callback' function - a function that is applied to each element of the array (inside of the function 'map')</li>
+  </ol>
 
-  Have 'map' return a new array filled with numbers that are the result of using the 'callback' function on each element of the input array
+  Have <code>map</code> return a new array filled with numbers that are the result of using the 'callback' function on each element of the input array.<br/>
+  <!--
+    map([1,2,3,4,5], multiplyByTwo); //-> [2,4,6,8,10]
+    multiplyByTwo(1); //-> 2
+    multiplyByTwo(2); //-> 4
+  -->
+  <pre style='color:#000000;background:#ccc;'>map<span style='color:#808030; '>(</span><span style='color:#808030; '>[</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>,</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>,</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>,</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>,</span><span style='color:#008c00; '>5</span><span style='color:#808030; '>]</span><span style='color:#808030; '>,</span> multiplyByTwo<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> [2,4,6,8,10]</span><br>multiplyByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> 2</span><br>multiplyByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> 4</span>
+  </pre>
 
-  ex: map([1,2,3,4,5], multiplyByTwo); -> [2,4,6,8,10]
-  multiplyByTwo(1); -> 2
-  multiplyByTwo(2); -> 4
-  etc, and the results are placed in a new array
-
-  function map(array, callback) {
-
-}
 </li>
 
 <li>
-  Challenge 4
+  <h4>Challenge 4</h4>
 
-  The function 'forEach' takes an array and a callback. It runs the callback on each element of the array - and that's it!
+  The function <code>forEach</code> takes an array and a callback. It runs the callback on each element of the array - and that's it!
 
-  function forEach(array, callback) {
-
-}
 </li>
 
-Extension work
+
 <li>
-  Extension 1
+  <h4>Extension 1</h4>
 
-  In the first part of the extension, you're going to rebuild map but this time you're going to use forEach inside of map to save using a for loop
+  In the first part of the extension, you're going to rebuild map but this time you're going to use forEach inside of map to save using a for loop.
 
-  function map(array, callback) {
-
-}
 </li>
 
 <li>
-  Extension 2
+  <h4>Extension 2</h4>
 
-  Raise your hand if you reach the function reduce
-
-  function reduce(initialValue, callback) {
-
-}
+  Raise your hand if you reach the function reduce.
 </li>

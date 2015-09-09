@@ -1,5 +1,76 @@
-#editor {
-  border: solid 1px #ddd
+body {
+  margin: 0;
+}
+
+#execute {
+  background-color: black;
+  border: 1px solid #33CCFF;
+  color: #33CCFF;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#execute:hover {
+  color: black;
+  background-color: #33CCFF;
+}
+
+#left {
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+  background-color: black;
+}
+
+#right {
+  display: inline-block;
+  width: 39%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.CodeMirror {
+  border: solid 1px #ddd;
+  height: 60vh;
+  min-height: 300px;
+}
+
+#console {
+  position: relative;
+  padding: 10px;
+  background-color: black;
+  color: #33CCFF;
+  font-family: courier;
+  height: 30vh;
+  overflow: auto;
+  min-height: 200px;
+}
+
+#console p {
+  margin: 0;
+}
+
+#console form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 97%;
+}
+
+#console form input {
+  background-color: black;
+  width: 95%;
+  display: inline-block;
+  color: inherit;
+  font-family: inherit;
+  border: none;
+}
+
+input:focus {
+  outline: 0;
 }
 
 .lint-error {
@@ -17,4 +88,60 @@
   border-radius: 50%;
   padding: 0 3px;
   margin-right: 7px;
+}
+
+.correct::before {
+  content: "✔";
+}
+
+.correct {
+  color: green;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes rotateIn {
+  from {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.rotateIn {
+  -webkit-animation-name: rotateIn;
+  animation-name: rotateIn;
 }

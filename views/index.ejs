@@ -26,14 +26,23 @@
 
 </head>
 <body>
-  <div id="editor"></div>
+  <div id="left">
+    <div id="editor"></div>
 
-  <button id="execute">Run</button>
+    <button id="execute">Run</button>
 
-  <div id="console"></div>
+    <div id="console">
+      <div id="output"></div>
+      <form>
+        &gt <input type="text">
+      </form>
+    </div>
+  </div>
 
-  <div id="instruct">
-    <%- include(challenges) %>
+  <div id="right">
+    <ul id="instruct">
+      <%- include(challenges) %>
+    </ul>
   </div>
 
   <script src="/third_party/jquery.min.js"></script>

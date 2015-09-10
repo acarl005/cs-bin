@@ -147,12 +147,14 @@ nav {
   transition: 0.4s;
   &:active {
     transition: 0s;
+    box-shadow: none;
   }
 }
 
 .btn-primary {
   background-color: $light-blue;
   color: white;
+  box-shadow: 2px 2px #1F7A99;
   &:hover {
     color: black;
     background-color: #33CCFF;
@@ -166,12 +168,13 @@ nav {
 .btn-danger {
   background-color: red;
   color: white;
+  box-shadow: 2px 2px #BB0000;
   &:hover {
     color: black;
     background-color: #FF6699;
   }
   &:active {
-    background-color: #990000;
+    background-color: #BB0000;
     transition: 0s;
   }
 }

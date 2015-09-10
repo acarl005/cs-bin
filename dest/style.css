@@ -1,18 +1,13 @@
 body {
   margin: 0;
   height: 100vh;
-  font-family: arial;
+  font-family: "open sans", arial;
   min-width: 960px;
 }
 
 a {
   text-decoration: none;
   color: #0099FF;
-}
-
-a:hover {
-  color: #000099;
-  transition: 0.4s;
 }
 
 ul {
@@ -65,11 +60,20 @@ nav li {
   background: linear-gradient(#bbb, #eee);
 }
 
+nav ul a {
+  font-weight: 600;
+}
+
 nav li:hover {
   background: -webkit-linear-gradient(#eee, #bbb);
   background: -o-linear-gradient(#eee, #bbb);
   background: -moz-linear-gradient(#eee, #bbb);
   background: linear-gradient(#eee, #bbb);
+}
+
+nav a.active li {
+  background: #eee;
+  border-bottom: none;
 }
 
 .CodeMirror {
@@ -107,10 +111,6 @@ nav li:hover {
 
 #console p {
   margin: 0;
-}
-
-#console #output {
-
 }
 
 #console form {
@@ -161,9 +161,9 @@ input:focus {
   margin-bottom: 15px;
 }
 
-#instruct li h4 {
-  margin-top: 10px;
-  margin-bottom: 5px;
+#instruct li h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
 }
 
 .correct::before {

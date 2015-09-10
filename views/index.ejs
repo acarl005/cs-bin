@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/lib/codemirror.css">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/addon/fold/foldgutter.css">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/addon/dialog/dialog.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/style.css">
 
   <script src="/third_party/CodeMirror-4.0.3/lib/codemirror.js"></script>
@@ -32,8 +33,8 @@
     <textarea id="editor"><%- include(challenges) %>
 </textarea>
 
-    <button id="execute" class="btn-console">Run Code</button>
-    <button id="save" class="btn-console">Save</button>
+    <button id="execute" class="btn-console">Run Code</button
+    ><button id="save" class="btn-console">Save</button>
 
     <div id="console">
       <div id="output"></div>
@@ -46,9 +47,9 @@
   ><div id="right">
     <nav>
       <ul>
-        <a href="/challenge/callbacks"><li>CALLBACKS</li></a
-        ><a href="/challenge/objects"><li>OBJECTS</li></a
-        ><a href="/challenge/closures"><li>CLOSURES</li></a>
+        <a href="/challenge/callbacks" class="<%= challenges === 'callbacks' ? 'active' : '' %>"><li>CALLBACKS</li></a
+        ><a href="/challenge/objects" class="<%= challenges === 'objects' ? 'active' : '' %>"><li>OBJECTS</li></a
+        ><a href="/challenge/closures" class="<%= challenges === 'closures' ? 'active' : '' %>"><li>CLOSURES</li></a>
       </ul>
     </nav>
     <ul id="instruct">

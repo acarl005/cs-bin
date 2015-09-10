@@ -5,7 +5,8 @@ window.onload = function() {
     mode: "javascript",
     matchBrackets: true,
     autoCloseBrackets: true,
-    keyMap: 'sublime'
+    keyMap: 'sublime',
+    tabSize: 2
   });
 
   var waiting;

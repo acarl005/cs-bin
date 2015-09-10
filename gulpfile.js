@@ -16,7 +16,8 @@ function scripts() {
   var bundler = browserify({
     entries: ['./src/repl.js'],
     transform: [
-      ['babelify', { blacklist: 'strict' }]
+      ['babelify', { blacklist: 'strict' }],
+      ['uglifyify']
     ],
     debug: true,
     cache: {},

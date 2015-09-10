@@ -4,7 +4,7 @@
 <head>
   <title>CS Bin</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/lib/codemirror.css">
@@ -30,15 +30,16 @@
 <body>
 
   <div id="left">
-    <textarea id="editor"><%- include(challenges) %>
-</textarea>
+    <textarea id="editor"><%- include(challenges) %></textarea>
 
-    <button id="execute" class="btn-console">Run Code</button
-    ><button id="save" class="btn-console">Save</button>
+    <div class="pull-right">
+      <button id="execute" class="btn-console">Run Code</button
+      ><button id="save" class="btn-console">Save</button>
+    </div>
 
     <div id="console">
       <div id="output"></div>
-      <form>
+      <form id="prompt">
         &gt <input type="text">
       </form>
     </div>

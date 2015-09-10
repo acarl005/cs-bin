@@ -2,7 +2,7 @@ body {
   margin: 0;
   height: 100vh;
   font-family: "open sans", arial;
-  min-width: 960px;
+  /*overflow: hidden;*/
 }
 
 a {
@@ -27,7 +27,7 @@ code {
   display: inline-block;
   width: 65%;
   height: 100%;
-  background-color: black;
+  background-color: #ccc;
 }
 
 #right {
@@ -37,7 +37,7 @@ code {
   position: absolute;
   right: 0;
   top: 0;
-  height: 99.9%;
+  height: 100%;
   overflow: auto;
 }
 
@@ -105,23 +105,25 @@ nav a.active li {
   background-color: black;
   color: #33CCFF;
   font-family: courier;
-  height: calc(40vh - 60px);
+  height: calc(40vh - 50px);
   overflow: auto;
+  box-sizing: border-box;
 }
 
 #console p {
   margin: 0;
 }
 
-#console form {
+#prompt {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 97%;
+  background-color: black;
 }
 
-#console form input {
-  background-color: black;
+#prompt input {
+  background-color: inherit;
   width: 95%;
   display: inline-block;
   color: inherit;
@@ -134,12 +136,19 @@ input:focus {
 }
 
 .btn-console {
-  background-color: black;
-  border: 1px solid #33CCFF;
-  color: #33CCFF;
-  padding: 10px;
+  position: relative;
+  background-color: #0099FF;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  margin: 5px;
   cursor: pointer;
+  border-radius: 6px;
   transition: 0.4s;
+}
+
+.pull-right {
+  text-align: right;
 }
 
 .btn-console:hover {

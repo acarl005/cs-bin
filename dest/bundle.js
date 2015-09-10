@@ -48,7 +48,7 @@ var commandStack = [];
 var commandIndex = -1;
 
 function render(text) {
-  text = String(text).replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match');
+  text = text.replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match');
   $('#console #output').append('<p>' + text + '</p>');
   var console = document.getElementById('console');
   console.scrollTop = console.scrollHeight;

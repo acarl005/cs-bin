@@ -47,39 +47,38 @@ code {
   overflow: auto;
 }
 
-nav ul {
-  padding: 0;
-  margin: 0;
-}
+nav {
 
-nav li {
-  display: inline-block;
-  padding: 10px;
-  width: 33.3%;
-  box-sizing: border-box;
-  text-align: center;
-  border-right: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
-  background: -webkit-linear-gradient($gray-4, $gray-1);
-  background: -o-linear-gradient($gray-4, $gray-1);
-  background: -moz-linear-gradient($gray-4, $gray-1);
-  background: linear-gradient($gray-4, $gray-1);
-}
+  ul {
+    padding: 0;
+    margin: 0;
+    a { font-weight: 600; }
+  }
 
-nav ul a {
-  font-weight: 600;
-}
+  li {
+    display: inline-block;
+    padding: 10px;
+    width: 33.3%;
+    box-sizing: border-box;
+    text-align: center;
+    border-right: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background: -webkit-linear-gradient($gray-4, $gray-1);
+    background: -o-linear-gradient($gray-4, $gray-1);
+    background: -moz-linear-gradient($gray-4, $gray-1);
+    background: linear-gradient($gray-4, $gray-1);
+    &:hover {
+      background: -webkit-linear-gradient($gray-1, $gray-4);
+      background: -o-linear-gradient($gray-1, $gray-4);
+      background: -moz-linear-gradient($gray-1, $gray-4);
+      background: linear-gradient($gray-1, $gray-4);
+    }
+  }
 
-nav li:hover {
-  background: -webkit-linear-gradient($gray-1, $gray-4);
-  background: -o-linear-gradient($gray-1, $gray-4);
-  background: -moz-linear-gradient($gray-1, $gray-4);
-  background: linear-gradient($gray-1, $gray-4);
-}
-
-nav a.active li {
-  background: $gray-1;
-  border-bottom: none;
+  a.active li {
+    background: $gray-1;
+    border-bottom: none;
+  }
 }
 
 .CodeMirror {
@@ -114,10 +113,7 @@ nav a.active li {
   height: calc(40vh - 50px);
   overflow: auto;
   box-sizing: border-box;
-}
-
-#console p {
-  margin: 0;
+  p { margin: 0; }
 }
 
 #prompt {
@@ -126,19 +122,15 @@ nav a.active li {
   left: 0;
   width: 97%;
   background-color: black;
-}
-
-#prompt input {
-  background-color: inherit;
-  width: 95%;
-  display: inline-block;
-  color: inherit;
-  font-family: inherit;
-  border: none;
-}
-
-input:focus {
-  outline: 0;
+  input {
+    background-color: inherit;
+    width: 95%;
+    display: inline-block;
+    color: inherit;
+    font-family: inherit;
+    border: none;
+    &:focus { outline: 0; }
+  }
 }
 
 .pull-right {
@@ -155,29 +147,29 @@ input:focus {
   cursor: pointer;
   border-radius: 6px;
   transition: 0.4s;
-}
-
-.btn-console:hover {
-  color: black;
-  background-color: #33CCFF;
-}
-
-.btn-console:active {
-  background-color: #1F7A99;
-  transition: 0s;
+  &:hover {
+    color: black;
+    background-color: #33CCFF;
+  }
+  &:active {
+    background-color: #1F7A99;
+    transition: 0s;
+  }
 }
 
 .error {
   color: red;
 }
 
-#instruct ul>li {
-  margin-bottom: 15px;
-}
+#instruct {
+  ul>li {
+    margin-bottom: 15px;
+  }
 
-#instruct li h3 {
-  margin-top: 20px;
-  margin-bottom: 8px;
+  li h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
 }
 
 .correct::before {
@@ -186,54 +178,6 @@ input:focus {
 
 .correct {
   color: green;
-}
-
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes rotateIn {
-  from {
-    -webkit-transform-origin: center;
-    transform-origin: center;
-    -webkit-transform: rotate3d(0, 0, 1, -200deg);
-    transform: rotate3d(0, 0, 1, -200deg);
-    opacity: 0;
-  }
-
-  to {
-    -webkit-transform-origin: center;
-    transform-origin: center;
-    -webkit-transform: none;
-    transform: none;
-    opacity: 1;
-  }
-}
-
-@keyframes rotateIn {
-  from {
-    -webkit-transform-origin: center;
-    transform-origin: center;
-    -webkit-transform: rotate3d(0, 0, 1, -200deg);
-    transform: rotate3d(0, 0, 1, -200deg);
-    opacity: 0;
-  }
-
-  to {
-    -webkit-transform-origin: center;
-    transform-origin: center;
-    -webkit-transform: none;
-    transform: none;
-    opacity: 1;
-  }
-}
-
-.rotateIn {
-  -webkit-animation-name: rotateIn;
-  animation-name: rotateIn;
 }
 
 

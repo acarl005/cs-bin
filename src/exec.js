@@ -24,8 +24,9 @@ module.exports = function(hasErrors) {
 
   function execute() {
     $('#console #output').empty();
-    if (hasErrors())
-      return render('<span class="error">There are errors in the editor. Fix them before executing.</span>');
+    var errors = hasErrors();
+    if (errors[0])
+      return render(`<span class="error">${errors[0].node.innerText}</span>`);
 
     var code = editor.getValue();
 
@@ -47,6 +48,7 @@ var commandStack = [];
 var commandIndex = -1;
 
 function render(text) {
+  text = text.replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match')
   $('#console #output').append(`<p>${text}</p>`);
 }
 

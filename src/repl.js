@@ -21,7 +21,7 @@ window.onload = function() {
 var errWidgets = [];
 
 function checkForErrors() {
-  return errWidgets.length;
+  return errWidgets;
 }
 
 function renderErr(lineNum, desc, colNum) {

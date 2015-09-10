@@ -1,3 +1,9 @@
+$light-blue: #0099FF;
+$gray-1: #eee;
+$gray-2: #ddd;
+$gray-3: #ccc;
+$gray-4: #bbb;
+
 body {
   margin: 0;
   height: 100vh;
@@ -7,7 +13,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #0099FF;
+  color: $light-blue;
 }
 
 ul {
@@ -19,7 +25,7 @@ ul>li {
 }
 
 code {
-  background-color: #ccc;
+  background-color: $gray-3;
   border-radius: 2px;
 }
 
@@ -27,11 +33,11 @@ code {
   display: inline-block;
   width: 65%;
   height: 100%;
-  background-color: #ccc;
+  background-color: $gray-3;
 }
 
 #right {
-  background: #eee;
+  background: $gray-1;
   display: inline-block;
   width: 35%;
   position: absolute;
@@ -54,10 +60,10 @@ nav li {
   text-align: center;
   border-right: 1px solid #aaa;
   border-bottom: 1px solid #aaa;
-  background: -webkit-linear-gradient(#bbb, #eee);
-  background: -o-linear-gradient(#bbb, #eee);
-  background: -moz-linear-gradient(#bbb, #eee);
-  background: linear-gradient(#bbb, #eee);
+  background: -webkit-linear-gradient($gray-4, $gray-1);
+  background: -o-linear-gradient($gray-4, $gray-1);
+  background: -moz-linear-gradient($gray-4, $gray-1);
+  background: linear-gradient($gray-4, $gray-1);
 }
 
 nav ul a {
@@ -65,19 +71,19 @@ nav ul a {
 }
 
 nav li:hover {
-  background: -webkit-linear-gradient(#eee, #bbb);
-  background: -o-linear-gradient(#eee, #bbb);
-  background: -moz-linear-gradient(#eee, #bbb);
-  background: linear-gradient(#eee, #bbb);
+  background: -webkit-linear-gradient($gray-1, $gray-4);
+  background: -o-linear-gradient($gray-1, $gray-4);
+  background: -moz-linear-gradient($gray-1, $gray-4);
+  background: linear-gradient($gray-1, $gray-4);
 }
 
 nav a.active li {
-  background: #eee;
+  background: $gray-1;
   border-bottom: none;
 }
 
 .CodeMirror {
-  border: solid 1px #ddd;
+  border: solid 1px $gray-2;
   height: 59vh;
   min-height: 300px;
 }
@@ -135,9 +141,13 @@ input:focus {
   outline: 0;
 }
 
+.pull-right {
+  text-align: right;
+}
+
 .btn-console {
   position: relative;
-  background-color: #0099FF;
+  background-color: $light-blue;
   color: white;
   border: none;
   padding: 7px 10px;
@@ -147,10 +157,6 @@ input:focus {
   transition: 0.4s;
 }
 
-.pull-right {
-  text-align: right;
-}
-
 .btn-console:hover {
   color: black;
   background-color: #33CCFF;
@@ -158,7 +164,6 @@ input:focus {
 
 .btn-console:active {
   background-color: #1F7A99;
-  border-color: #13495C;
   transition: 0s;
 }
 

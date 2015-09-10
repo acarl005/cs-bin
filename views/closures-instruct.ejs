@@ -26,11 +26,15 @@
     var printSample = createFunctionPrinter('sample');
     var printHello = createFunctionPrinter('hello')
     // now we'll call the functions we just created
-    printSample(); should console.log('sample');
-    printHello(); should console.log('hello');
+    printSample(); //should console.log('sample');
+    printHello(); //should console.log('hello');
   -->
-  <pre style='color:#000000;background:#ddd;'><span style='color:#800000; font-weight:bold; '>var</span> printSample <span style='color:#808030; '>=</span> createFunctionPrinter<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>sample</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span><br><span style='color:#800000; font-weight:bold; '>var</span> printHello <span style='color:#808030; '>=</span> createFunctionPrinter<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>hello</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><br><span style='color:#696969; '>// now we'll call the functions we just created</span><br>printSample<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> should console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>sample</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span><br>printHello<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> should console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>hello</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
-  </pre>
+  <pre style='color:#000000;background:#ddd;'><span style='color:#800000; font-weight:bold; '>var</span> printSample <span style='color:#808030; '>=</span> createFunctionPrinter<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>sample</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800000; font-weight:bold; '>var</span> printHello <span style='color:#808030; '>=</span> createFunctionPrinter<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>hello</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span>
+<span style='color:#696969; '>// now we'll call the functions we just created</span>
+printSample<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should console.log('sample');</span>
+printHello<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should console.log('hello');</span>
+</pre>
 
 
 </li>
@@ -51,30 +55,30 @@
   Now we are going to create a function <code>addByX</code> that returns a function that will add an input by <code>x</code>.
   <!--
     var addByTwo = addByX(2);
-    addByTwo(1); //-> should return 3
-    addByTwo(2); //-> should return 4
-    addByTwo(3); //-> should return 5
+    addByTwo(1); //should return 3
+    addByTwo(2); //should return 4
+    addByTwo(3); //should return 5
 
     var addByThree = addByX(3);
-    addByThree(1); //-> should return 4
-    addByThree(2); //-> should return 5
+    addByThree(1); //should return 4
+    addByThree(2); //should return 5
 
     var addByFour = addByX(4);
-    addByFour(4); //-> should return 8
-    addByFour(5); //-> should return 9
+    addByFour(4); //should return 8
+    addByFour(5); //should return 9
   -->
   <pre style='color:#000000;background:#ddd;'><span style='color:#800000; font-weight:bold; '>var</span> addByTwo <span style='color:#808030; '>=</span> addByX<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
-addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 3</span>
-addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 4</span>
-addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 5</span>
+addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 3</span>
+addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 4</span>
+addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 5</span>
 
 <span style='color:#800000; font-weight:bold; '>var</span> addByThree <span style='color:#808030; '>=</span> addByX<span style='color:#808030; '>(</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
-addByThree<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 4</span>
-addByThree<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 5</span>
+addByThree<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 4</span>
+addByThree<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 5</span>
 
 <span style='color:#800000; font-weight:bold; '>var</span> addByFour <span style='color:#808030; '>=</span> addByX<span style='color:#808030; '>(</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
-addByFour<span style='color:#808030; '>(</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 8</span>
-addByFour<span style='color:#808030; '>(</span><span style='color:#008c00; '>10</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 14</span>
+addByFour<span style='color:#808030; '>(</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 8</span>
+addByFour<span style='color:#808030; '>(</span><span style='color:#008c00; '>10</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should return 14</span>
 </pre>
 
 </li>

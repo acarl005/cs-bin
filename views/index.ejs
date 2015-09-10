@@ -32,7 +32,8 @@
     <textarea id="editor"><%- include(challenges) %>
 </textarea>
 
-    <button id="execute">Run Code</button>
+    <button id="execute" class="btn-console">Run Code</button>
+    <button id="save" class="btn-console">Save</button>
 
     <div id="console">
       <div id="output"></div>
@@ -58,5 +59,22 @@
   <script src="/third_party/jquery.min.js"></script>
   <script src="/third_party/esprima.js"></script>
   <script src="/bundle.js"></script>
+  <script>
+    setTimeout(function() {
+      $('#save').on('click', function(e) {
+        localStorage.setItem("<%= challenges %>", editor.getValue());
+        alert('Progress saved.')
+      });
+      var saved = localStorage.getItem("<%= challenges %>");
+      console.log(saved)
+      if (saved) {
+        editor.replaceRange(
+          saved,
+          CodeMirror.Pos(editor.firstLine()-1),
+          CodeMirror.Pos(editor.lastLine())
+        );
+      }
+    }, 100);
+  </script>
 </body>
 </html>

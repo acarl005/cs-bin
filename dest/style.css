@@ -128,7 +128,7 @@ input:focus {
   outline: 0;
 }
 
-#execute {
+.btn-console {
   background-color: black;
   border: 1px solid #33CCFF;
   color: #33CCFF;
@@ -137,12 +137,12 @@ input:focus {
   transition: 0.4s;
 }
 
-#execute:hover {
+.btn-console:hover {
   color: black;
   background-color: #33CCFF;
 }
 
-#execute:active {
+.btn-console:active {
   background-color: #1F7A99;
   border-color: #13495C;
   transition: 0s;

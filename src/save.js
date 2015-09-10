@@ -9,11 +9,7 @@ module.exports = function(editor) {
 
   var saved = localStorage.getItem(path);
   if (saved) {
-    editor.replaceRange(
-      saved,
-      CodeMirror.Pos(editor.firstLine()-1),
-      CodeMirror.Pos(editor.lastLine())
-    );
+    replaceEditorText(saved);
   }
 
   $('#clear').on('click', e => {

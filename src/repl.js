@@ -28,7 +28,12 @@ function checkForErrors() {
 }
 
 function renderErr(lineNum, desc, colNum) {
-  var msg = $(`<div class="lint-error"><span class="lint-error-icon">!</span>${desc}</div>`)[0];
+  var msg = $(`
+    <div class="lint-error">
+      <span class="lint-error-icon">!</span>
+      ${desc}
+    </div>
+  `)[0];
   errWidgets.push(
     editor.addLineWidget(lineNum - 1, msg, { coverGutter: false, noHScroll: true })
   );
@@ -57,6 +62,14 @@ function updateErrors() {
     renderErr(err.lineNumber, err.description, err.column);
   }
 
+}
+
+window.replaceEditorText = function(text) {
+  editor.replaceRange(
+    text,
+    CodeMirror.Pos(editor.firstLine()-1),
+    CodeMirror.Pos(editor.lastLine())
+  );
 }
 
 var execute = require('./exec');

@@ -137,22 +137,41 @@ nav {
   text-align: right;
 }
 
-.btn-console {
+.btn {
   position: relative;
-  background-color: $light-blue;
-  color: white;
   border: none;
   padding: 7px 10px;
   margin: 5px;
   cursor: pointer;
   border-radius: 6px;
   transition: 0.4s;
+  &:active {
+    transition: 0s;
+  }
+}
+
+.btn-primary {
+  background-color: $light-blue;
+  color: white;
   &:hover {
     color: black;
     background-color: #33CCFF;
   }
   &:active {
     background-color: #1F7A99;
+    transition: 0s;
+  }
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+  &:hover {
+    color: black;
+    background-color: #FF6699;
+  }
+  &:active {
+    background-color: #990000;
     transition: 0s;
   }
 }

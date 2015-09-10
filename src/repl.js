@@ -1,6 +1,6 @@
 window.onload = function() {
 
-  window.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+  window.editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
     lineNumbers: true,
     mode: "javascript",
     matchBrackets: true,
@@ -15,6 +15,9 @@ window.onload = function() {
     clearTimeout(waiting);
     waiting = setTimeout(updateErrors, 800);
   });
+
+  var save = require('./save');
+  save(editor);
 
 };
 

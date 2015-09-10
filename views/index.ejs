@@ -30,11 +30,12 @@
 <body>
 
   <div id="left">
-    <textarea id="editor"><%- include(challenges) %></textarea>
+    <textarea id="code-editor"><%- include(challenges) %></textarea>
 
     <div class="pull-right">
-      <button id="execute" class="btn-console">Run Code</button
-      ><button id="save" class="btn-console">Save</button>
+      <button id="execute" class="btn btn-primary">Run Code</button
+      ><button id="save" class="btn btn-primary">Save</button
+      ><button id="clear" class="btn btn-danger">Start Over</button>
     </div>
 
     <div id="console">
@@ -43,9 +44,9 @@
         &gt <input type="text">
       </form>
     </div>
-  </div
+  </div>
 
-  ><div id="right">
+  <div id="right">
     <nav>
       <ul>
         <a href="/challenge/callbacks" class="<%= challenges === 'callbacks' ? 'active' : '' %>"><li>CALLBACKS</li></a
@@ -61,22 +62,6 @@
   <script src="/third_party/jquery.min.js"></script>
   <script src="/third_party/esprima.js"></script>
   <script src="/bundle.js"></script>
-  <script>
-    setTimeout(function() {
-      $('#save').on('click', function(e) {
-        localStorage.setItem("<%= challenges %>", editor.getValue());
-        alert('Progress saved.')
-      });
-      var saved = localStorage.getItem("<%= challenges %>");
-      console.log(saved)
-      if (saved) {
-        editor.replaceRange(
-          saved,
-          CodeMirror.Pos(editor.firstLine()-1),
-          CodeMirror.Pos(editor.lastLine())
-        );
-      }
-    }, 100);
-  </script>
+
 </body>
 </html>

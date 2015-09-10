@@ -1,93 +1,87 @@
 <li>
 
-// create a function that creates and returns a function. when that created function is called, it should print 'hello'
-// var function1 = createFunction();
-// now we are going to call the function we just created
-// function1(); should console.log('hello');
-function createFunction() {
+  <h4>Challenge 1</h4>
 
-}
+  Create a function <code>createFunction</code> that creates and returns a function. When that created function is called, it should print "hello".
+  <!--
+    var function1 = createFunction();
+    // now we are going to call the function we just created
+    function1(); //should console.log('hello');
+  -->
+  <pre style='color:#000000;background:#ddd;'><span style='color:#800000; font-weight:bold; '>var</span> function1 <span style='color:#808030; '>=</span> createFunction<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span><br><span style='color:#696969; '>// now we'll call the function we just created</span><br>function1<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//should console.log('hello');</span>
+  </pre>
 
-// when you think you completed createFunction, comment out the following two commented lines below (to comment out the lines, remove the // in the beginning of each line). function1() should print out 'hello' in the console to the left
 
-// var function1 = createFunction();
-// function1();
+  When you think you completed createFunction, un-comment out those lines in the code and run it to see if it works.
+
 </li>
 
 
 <li>
 
-// create a function that accepts one input and returns a function. when that created function is called, it should print out the input that was used when the function was created
+  <h4>Challenge 2</h4>
+  Create a function that accepts one input and returns a function. When that created function is called, it should print out the input that was used when the function was created.
 
-// var printSample = createFunctionPrinter('sample');
-// var printHello = createFunctionPrinter('hello')
-// now we are going to call the function we just created
-// printSample(); should console.log('sample');
-// printHello(); should console.log('hello');
-function createFunctionPrinter(input) {
+  <!--
+    var printSample = createFunctionPrinter('sample');
+    var printHello = createFunctionPrinter('hello')
+    // now we'll call the functions we just created
+    printSample(); should console.log('sample');
+    printHello(); should console.log('hello');
+  -->
+  <pre style='color:#000000;background:#ddd;'><span style='color:#800000; font-weight:bold; '>var</span> printSample <span style='color:#808030; '>=</span> createFunctionPrinter<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>sample</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span><br><span style='color:#800000; font-weight:bold; '>var</span> printHello <span style='color:#808030; '>=</span> createFunctionPrinter<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>hello</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><br><span style='color:#696969; '>// now we'll call the functions we just created</span><br>printSample<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> should console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>sample</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span><br>printHello<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> should console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>hello</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+  </pre>
 
-}
 
-// when you think you created the createFunctionPrinter, comment out the following two lines. printSample should print out 'sample'
-// var printSample = createFunctionPrinter('sample');
-// printSample();
-
-// if you got the above functions to work, comment out the following two lines. printSample should print out 'hello'
-// var printHello = createFunctionPrinter('hello');
-// printHello();
 </li>
 
 <li>
 
-// Examine the following code. Notice that we are returning a function and that function is using variables that are outside of its scope
-function outer(){
-  var counter = 0; // this variable is outside incrementCounter's scope
-  function incrementCounter (){
-    counter ++;
-    console.log('counter', counter);
-  }
-  return incrementCounter;
-}
+  <h4>Challenge 3</h4>
 
-var willCounter = outer();
-var jasCounter = outer();
+  Examine the code for the <code>outer</code> function. Notice that we are returning a function and that function is using variables that are outside of its scope.<br/>
+  Uncomment those lines of code. Try to deduce the output before executing.
 
-// uncomment each of these lines one by one. Before your do, guess what will be logged from each function call
-
-// willCounter();
-// willCounter();
-// willCounter();
-
-// jasCounter();
-// willCounter();
 </li>
 
 
 <li>
-// now we are going to create a function that returns a function that will add an input by x
 
-// var addByTwo = addByX(2);
-// addByTwo(1); -> should return 3
-// addByTwo(2); -> should return 4
-// addByTwo(3); -> should return 5
+  <h4>Challenge 4</h4>
+  Now we are going to create a function <code>addByX</code> that returns a function that will add an input by <code>x</code>.
+  <!--
+    var addByTwo = addByX(2);
+    addByTwo(1); //-> should return 3
+    addByTwo(2); //-> should return 4
+    addByTwo(3); //-> should return 5
 
-// var addByThree = addByX(3);
-// addByThree(1); -> should return 4
-// addByThree(2); -> should return 5
+    var addByThree = addByX(3);
+    addByThree(1); //-> should return 4
+    addByThree(2); //-> should return 5
 
-// var addByFour = addByX(4);
-// addByFour(4); -> should return 8
-// addByFour(5); -> should return 9
-function addByX(x) {
+    var addByFour = addByX(4);
+    addByFour(4); //-> should return 8
+    addByFour(5); //-> should return 9
+  -->
+  <pre style='color:#000000;background:#ddd;'><span style='color:#800000; font-weight:bold; '>var</span> addByTwo <span style='color:#808030; '>=</span> addByX<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 3</span>
+addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 4</span>
+addByTwo<span style='color:#808030; '>(</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 5</span>
 
-}
+<span style='color:#800000; font-weight:bold; '>var</span> addByThree <span style='color:#808030; '>=</span> addByX<span style='color:#808030; '>(</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+addByThree<span style='color:#808030; '>(</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 4</span>
+addByThree<span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 5</span>
 
-var addByTwo = addByX(2);
+<span style='color:#800000; font-weight:bold; '>var</span> addByFour <span style='color:#808030; '>=</span> addByX<span style='color:#808030; '>(</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+addByFour<span style='color:#808030; '>(</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 8</span>
+addByFour<span style='color:#808030; '>(</span><span style='color:#008c00; '>10</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span> <span style='color:#696969; '>//-> should return 14</span>
+</pre>
 
-// now call addByTwo with an input of 1
+</li>
 
+<li>
 
+  <h4>Extension: Challenge 5</h4>
 
-
-// now call addByTwo with an input of 2
+  Write a function <code>once</code> that accepts a callback as input and returns a function. When the returned function is called the first time, it should call the callback and return that output. If it is called any additional times, instead of calling the callback again it will simply return the output value from the first time it was called.
 </li>

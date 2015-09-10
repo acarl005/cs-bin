@@ -3,7 +3,6 @@ window.onload = function() {
   window.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
     lineNumbers: true,
     mode: "javascript",
-    value: "",
     matchBrackets: true,
     autoCloseBrackets: true,
     keyMap: 'sublime'

@@ -6,7 +6,8 @@ window.onload = function() {
     matchBrackets: true,
     autoCloseBrackets: true,
     keyMap: 'sublime',
-    tabSize: 2
+    tabSize: 2,
+    theme: 'ttcn'
   });
 
   var waiting;

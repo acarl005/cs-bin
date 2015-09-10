@@ -20,9 +20,9 @@ function createFunctionPrinter(input) {
 
 
 
-function outer(){
+function outer() {
   var counter = 0; // this variable is outside incrementCounter's scope
-  function incrementCounter (){
+  function incrementCounter () {
     counter ++;
     console.log('counter', counter);
   }

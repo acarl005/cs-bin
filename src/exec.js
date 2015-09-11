@@ -25,6 +25,7 @@ module.exports = function(hasErrors) {
   function execute() {
     $('#console #output').empty();
     var errors = hasErrors();
+
     if (errors[0])
       return render(`<span class="error">${errors[0].node.innerText}</span>`);
 
@@ -48,10 +49,14 @@ var commandStack = [];
 var commandIndex = -1;
 
 function render(text) {
-  text = String(text).replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match')
+  if (typeof text === 'object') {
+    text = JSON.stringify(text, null, 4);
+  } else {
+    text = String(text).replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match')
+  }
   $('#console #output').append(`<p>${text}</p>`);
-  var console = document.getElementById('console');
-  console.scrollTop = console.scrollHeight;
+  var consoleDOM = document.getElementById('console');
+  consoleDOM.scrollTop = consoleDOM.scrollHeight;
 }
 
 function repl(e) {
@@ -69,6 +74,8 @@ function repl(e) {
       var errMessage = evalErr.match(/.*/)[0];
       render(`<span class="error">${errMessage}</span>`);
     } else {
+      if (typeof output === 'object')
+        output = JSON.stringify(output);
       render(`=> ${output}`);
     }
   });

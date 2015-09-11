@@ -49,9 +49,9 @@ function updateErrors() {
 
   try {
     var syntax = esprima.parse(code, { tolerant: true, loc: true });
-
     var evalErr;
-    var wrappedCode = `try{ ${code} } catch(err) { evalErr = err.stack }`;
+    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err.stack }`;
+
     eval(wrappedCode);
     if (evalErr) {
       var errMessage = evalErr.match(/.*/)[0];

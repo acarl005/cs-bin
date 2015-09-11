@@ -1,0 +1,8 @@
+export NODE_ENV=test;
+nohup node server.js &
+export NODE_PSID=$!;
+sleep 2;
+node_modules/.bin/casperjs test "$1";
+STATUS=$?;
+kill $NODE_PSID;
+if [ $STATUS != 0 ]; then exit 1; fi;

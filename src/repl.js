@@ -28,6 +28,7 @@ function checkForErrors() {
 }
 
 function renderErr(lineNum, desc, colNum) {
+  if (!lineNum) throw new Error('Line number for renderErr must be a valid integer.');
   var msg = $(`
     <div class="lint-error">
       <span class="lint-error-icon">!</span>
@@ -54,9 +55,11 @@ function updateErrors() {
 
     eval(wrappedCode);
     if (evalErr) {
-      // var errMessage = evalErr.match(/.*/)[0];
-      // var [__, lineNum, colNum] = evalErr.match(/<anonymous>:(\d+):(\d+)/);
-      renderErr(evalErr.lineNumber, evalErr.message, evalErr.columnNumber);
+      var stack = evalErr.stack;
+      var errMessage = evalErr.message || stack.match(/.*/)[0];     // firefox || chrome
+      var lineNum = evalErr.lineNumber || stack.match(/<anonymous>:(\d+):\d+/)[0];
+      // var colNum = evalErr.columnNumber || stack.match(/<anonymous>:\d+:(\d+)/)[0];
+      renderErr(lineNum, errMessage);
     }
   } catch (err) {
     renderErr(err.lineNumber, err.description, err.column);

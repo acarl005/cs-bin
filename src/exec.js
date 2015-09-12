@@ -26,8 +26,12 @@ module.exports = function(hasErrors) {
     $('#console #output').empty();
     var errors = hasErrors();
 
-    if (errors[0])
-      return render(errors[0].node.innerText, { error: true });
+    if (errors[0]){
+      return render(
+        errors[0].node.innerText || $(errors[0].node).text(),    // chrome || firefox
+        { error: true }
+      );
+    }
 
     var code = editor.getValue();
 

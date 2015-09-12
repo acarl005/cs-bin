@@ -60,7 +60,10 @@ function render(text, options={}) {
   }
 
   // This particular err message is poor. Make it a bit more helpful
-  text = text.replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match')
+  text = text.replace(
+    /Unexpected end of input/, 
+    'Unexpected end of input: probably an extra opening bracket or operator.'
+  );
 
   if (options.arrow)
     text = `=> ${text}`;

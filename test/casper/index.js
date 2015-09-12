@@ -48,7 +48,7 @@ casper.test.begin('test the UI', function(test) {
     this.fill('#prompt', {
       shell: 'ergnerogue',
     }, true);
-    test.assertSelectorHasText('.error', 'ReferenceError: ');
+    test.assertSelectorHasText('.error', 'Can\'t find variable:');
     test.assertSelectorHasText('.error', 'ergnerogue');
     this.click('#prompt input');
     this.evaluate(function() {

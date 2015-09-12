@@ -4,7 +4,7 @@ module.exports = function(hasErrors) {
     $('#console form').on('submit', repl);
     $('#execute').on('click', execute);
     $(window).on('keypress', e => {
-      e.ctrlKey && e.keyCode && execute();   //execute if they press ctrl+b
+      e.ctrlKey && e.keyCode && execute();   //execute if they press ctrl+b in chrome
     });
 
     $('#console form').on('keydown', e => {
@@ -27,7 +27,7 @@ module.exports = function(hasErrors) {
     var errors = hasErrors();
 
     if (errors[0])
-      return render(`<span class="error">${errors[0].node.innerText}</span>`);
+      return render(errors[0].node.innerText, { error: true });
 
     var code = editor.getValue();
 
@@ -44,17 +44,27 @@ module.exports = function(hasErrors) {
   }
 }
 
-//allow user to access previously entered commands
+// allow user to access previously entered commands
 var commandStack = [];
 var commandIndex = -1;
 
-function render(text) {
+function render(text, options={}) {
   if (typeof text === 'object') {
     text = JSON.stringify(text, null, 4);
   } else {
-    text = String(text).replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match')
+    text = String(text);
   }
+
+  // This particular err message is poor. Make it a bit more helpful
+  text = text.replace(/Unexpected end of input/, 'Unexpected end of input: make sure your brackets match')
+
+  if (options.arrow)
+    text = `=> ${text}`;
+  if (options.error)
+    text = `<span class="error">${text}</span>`;
   $('#console #output').append(`<p>${text}</p>`);
+
+  // scroll to bottom in order to show most recent
   var consoleDOM = document.getElementById('console');
   consoleDOM.scrollTop = consoleDOM.scrollHeight;
 }
@@ -68,15 +78,13 @@ function repl(e) {
   wrapLogOutput(() => {
     $(e.target).find('input').val('');
     var evalErr;
-    var wrappedCode = `try{ ${code} } catch(err) { evalErr = err.stack }`;
+    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err.stack }`;
     var output = eval(wrappedCode);
     if (evalErr) {
       var errMessage = evalErr.match(/.*/)[0];
-      render(`<span class="error">${errMessage}</span>`);
+      render(errMessage, { error: true });
     } else {
-      if (typeof output === 'object')
-        output = JSON.stringify(output);
-      render(`=> ${output}`);
+      render(output, { arrow: true });
     }
   });
 }

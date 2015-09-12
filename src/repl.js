@@ -50,13 +50,13 @@ function updateErrors() {
   try {
     var syntax = esprima.parse(code, { tolerant: true, loc: true });
     var evalErr;
-    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err.stack }`;
+    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err }`;
 
     eval(wrappedCode);
     if (evalErr) {
-      var errMessage = evalErr.match(/.*/)[0];
-      var [__, lineNum, colNum] = evalErr.match(/<anonymous>:(\d+):(\d+)/);
-      renderErr(lineNum, errMessage, colNum);
+      // var errMessage = evalErr.match(/.*/)[0];
+      // var [__, lineNum, colNum] = evalErr.match(/<anonymous>:(\d+):(\d+)/);
+      renderErr(evalErr.lineNumber, evalErr.message, evalErr.columnNumber);
     }
   } catch (err) {
     renderErr(err.lineNumber, err.description, err.column);

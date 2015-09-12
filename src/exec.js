@@ -78,11 +78,15 @@ function repl(e) {
   wrapLogOutput(() => {
     $(e.target).find('input').val('');
     var evalErr;
-    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err.stack }`;
-    var output = eval(wrappedCode);
+    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err }`;
+    try {
+      var output = eval(wrappedCode);
+    } catch (err) {
+      evalErr = err;
+    }
     if (evalErr) {
-      var errMessage = evalErr.match(/.*/)[0];
-      render(errMessage, { error: true });
+
+      render(evalErr.message, { error: true });
     } else {
       render(output, { arrow: true });
     }

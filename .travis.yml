@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- '0.12'
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAJQF7D3OMVQEBY7RA
+  secret_access_key:
+    secure: Q+Chnm7mlWnHkY9O6O59wPJqZpSIE6ERgsr9RzdwNhPkODDCujTcV613xetT0zar9AGQ7R+cY+7hdMEXcCmDRhGiCby4A+vqG4KwtWAAz89CS7iP3pYwT4Qg13kv9DQ85o4/PZDBDaE1WEXp/6mlpU0k3IO9z8LY2JI+SGao+wlMRdp0QcCVWA4n0lsSF1M7DRfwyrzDIkfrJ6ZhsEgJtI+qUOvXq0p+5vp0xY6FKg1qNvrI5w8R1JSy7ag5t2wp0q15bIN7IRCzHHe/FYcSmpab2t91d+O+N0XB7VEr6ZS7NOPELvqT7PZyKrkGa6WTSa/9xw/Lq4Y18dU1J/Ol6r0wfrnDNvU4rqcO5X4bFMUsKdyYMu681ve04oU1N2W3bZjlIERAwFyUFY11COOoL4Xe1vFYMPkLts7rVqLfpUrYxVciuCC5EWvxMIBQdUdQqqBNq4/pXM5S8Ai+fkEQeJBdAJ1cIwS932BXNJumy0Do5SdnK6dYikDUCyHVuRptCHScxWGBiuO18nd/9UT2UjRpTts8y0GaXcTdxnQ/OytAsEWzqoDkGl6uv9YtAxEFX6qJEOdz5yifK6uPWzNiBNolVt/OpzCSA16cf9MpDhIVkA54WvetVi2jnb4ufiksS3MFKDvIF9FkjIExLBaPe43OomAsbN+OorLgvDMzKqQ=
+  region: us-west-2
+  app: cs-bin
+  env: cs-bin-stag
+  bucket_name: elasticbeanstalk-us-west-2-809870753536
+  on:
+    repo: CodesmithLLC/cs-bin
+
+

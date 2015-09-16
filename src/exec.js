@@ -25,11 +25,11 @@ module.exports = function(hasErrors) {
   function execute() {
     $('#console #output').empty();
     var errors = hasErrors();
-
-    if (errors[0]){
+    var error = errors[0];
+    if (error){
       return render(
-        errors[0].node.innerText || $(errors[0].node).text(),    // chrome || firefox
-        { error: true }
+        error.node.innerText || $(error.node).text(),    // chrome || firefox
+        { error: true, lineNum: editor.getLineNumber(error.line) + 1 }
       );
     }
 
@@ -69,6 +69,8 @@ function render(text, options={}) {
     text = `=> ${text}`;
   if (options.error)
     text = `<span class="error">${text}</span>`;
+  if (options.lineNum)
+    text = text.replace(/!/, `line ${options.lineNum} - `);
   $('#console #output').append(`<p>${text}</p>`);
 
   // scroll to bottom in order to show most recent

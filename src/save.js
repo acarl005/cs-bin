@@ -15,7 +15,7 @@ module.exports = function(editor) {
   $('#clear').on('click', e => {
     if (confirm('Are you sure? This will remove saved progress.')) {
       localStorage.removeItem(path);
-      window.location.reload();
+      replaceEditorText($('#code-editor').val());
     }
   });
 

@@ -86,6 +86,10 @@ function repl(e) {
   commandIndex = -1;
   wrapLogOutput(() => {
     $(e.target).find('input').val('');
+
+    //var declarations don't work in the REPL, so give them an error
+    if (code.match(/var/)) return render('do var declarations in the editor above', { error: true });
+
     var evalErr;
     var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err }`;
     try {
@@ -94,7 +98,6 @@ function repl(e) {
       evalErr = err;
     }
     if (evalErr) {
-
       render(evalErr.message, { error: true });
     } else {
       render(output, { arrow: true });

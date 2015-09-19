@@ -5,11 +5,11 @@ app.get('/', function(req, res) {
   res.render('index', { challenges: 'none'});
 });
 
-app.get('/challenge/:challenge', function(req, res) {
+app.use(express.static('dest'));
+
+app.get('/:challenge', function(req, res) {
   res.render('index', { challenges: req.params.challenge });
 });
-
-app.use(express.static('dest'));
 
 app.set('view engine', 'ejs');
 app.set('views', './views');

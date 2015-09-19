@@ -77,3 +77,4 @@ window.replaceEditorText = function(text) {
 
 var execute = require('./exec');
 execute(checkForErrors);
+require('./resize');

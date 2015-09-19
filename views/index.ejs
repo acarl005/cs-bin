@@ -4,7 +4,7 @@
 <head>
   <title>CS Bin</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
 
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/lib/codemirror.css">
@@ -30,12 +30,18 @@
 <body>
 
   <div id="left">
-    <textarea id="code-editor"><%- include(challenges) %></textarea>
+    <div id='editor-wrap'>
+      <textarea id="code-editor"><%- include(challenges) %></textarea>
 
-    <div class="pull-right">
-      <button id="execute" class="btn btn-primary">Run Code</button
-      ><button id="save" class="btn btn-primary">Save</button
-      ><button id="clear" class="btn btn-danger">Start Over</button>
+      <div class="btn-group">
+        <button id="execute" class="btn btn-primary">Run Code</button>
+        <button id="save" class="btn btn-primary">Save</button>
+        <button id="clear" class="btn btn-danger">Start Over</button>
+      </div>
+    </div>
+
+    <div id="resize-wrap">
+      <div class="resize"></div>
     </div>
 
     <div id="console">
@@ -47,6 +53,7 @@
   </div>
 
   <div id="right">
+    <!--
     <nav>
       <ul>
         <a href="/challenge/callbacks" class="<%= challenges === 'callbacks' ? 'active' : '' %>"><li>CALLBACKS</li></a
@@ -54,12 +61,14 @@
         ><a href="/challenge/closures" class="<%= challenges === 'closures' ? 'active' : '' %>"><li>CLOSURES</li></a>
       </ul>
     </nav>
+    -->
     <ul id="instruct">
       <%- include(challenges + '-instruct') %>
     </ul>
   </div>
 
   <script src="/third_party/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   <script src="/third_party/esprima.js"></script>
   <script src="/bundle.js"></script>
 

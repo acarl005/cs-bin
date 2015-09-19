@@ -45,6 +45,7 @@ code {
   top: 0;
   height: 100%;
   overflow: auto;
+  h1 { border-bottom: 1px solid #aaa }
 }
 
 nav {
@@ -107,7 +108,7 @@ nav {
   z-index: 100;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 20px;
 }
 
 .lint-error {

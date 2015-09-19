@@ -17,7 +17,7 @@ function scripts() {
     entries: ['./src/repl.js'],
     transform: [
       ['babelify', { blacklist: 'strict' }],
-      // ['uglifyify']
+      ['uglifyify']
     ],
     debug: true,
     cache: {},

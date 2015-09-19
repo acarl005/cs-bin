@@ -7,6 +7,12 @@ $(document).ready(e => {
     axis: 'y',
     drag: e => {
       var change = e.target.style.top;
+
+      if (
+        pxToNum(change) + pxToNum(editorHeight) > 
+        window.innerHeight - 50
+      ) return;
+        
       var oper = '+-';
       if (change[0] === '-') {
         change = change.slice(1);
@@ -23,3 +29,7 @@ $(document).ready(e => {
     }
   })
 });
+
+function pxToNum(str) {
+  return +str.slice(0, -2);
+}

@@ -8,7 +8,7 @@ body {
   margin: 0;
   height: 100vh;
   font-family: "open sans", arial;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
 
 a {
@@ -82,9 +82,32 @@ nav {
 }
 
 .CodeMirror {
-  border: solid 1px $gray-2;
-  height: 60vh;
-  min-height: 300px;
+  height: 100%;
+}
+
+#editor-wrap {
+  height: 65vh;
+  position: relative;
+}
+
+#resize-wrap {
+  height: 1vh;
+  background: black;
+  cursor: row-resize;
+  box-sizing: border-box;
+  &:hover { border-top: $light-blue 2px dashed; }
+}
+
+.resize {
+  height: 1vh;
+  cursor: row-resize;
+}
+
+.btn-group {
+  z-index: 100;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .lint-error {
@@ -110,7 +133,7 @@ nav {
   background-color: black;
   color: #33CCFF;
   font-family: courier;
-  height: calc(40vh - 50px);
+  height: 33.5vh;
   overflow: auto;
   box-sizing: border-box;
   p { margin: 0; }
@@ -133,9 +156,6 @@ nav {
   }
 }
 
-.pull-right {
-  text-align: right;
-}
 
 .btn {
   position: relative;

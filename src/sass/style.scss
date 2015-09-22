@@ -1,8 +1,11 @@
 $light-blue: #0099FF;
+$console-blue: #33CCFF;
 $gray-1: #eee;
 $gray-2: #ddd;
 $gray-3: #ccc;
 $gray-4: #bbb;
+
+html { overflow: hidden; }
 
 body {
   margin: 0;
@@ -132,12 +135,22 @@ nav {
   position: relative;
   padding: 10px;
   background-color: black;
-  color: #33CCFF;
+  color: $console-blue;
   font-family: courier;
   height: 33.5vh;
   overflow: auto;
   box-sizing: border-box;
   p { margin: 0; }
+  #close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    font-family: arial;
+    &:hover { color: $console-blue; }
+  }
 }
 
 #prompt {

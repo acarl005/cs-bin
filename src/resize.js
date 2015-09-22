@@ -13,7 +13,7 @@ $(document).ready(e => {
       if (
         pxToNum(change) + pxToNum(editorHeight) > 
         window.innerHeight - 50
-      ) return;
+      ) throw '';
 
       var oper = '+-';
       if (change[0] === '-') {
@@ -30,9 +30,24 @@ $(document).ready(e => {
       e.target.style.top = 0;
       editor.refresh();
     }
-  })
+  });
+
+  hideConsole();
+  $('#execute').on('click', showConsole);
+  $('#close').on('click', hideConsole);
+
 });
 
 function pxToNum(str) {
   return +str.slice(0, -2);
+}
+
+window.hideConsole = function() {
+  $('#black-stuff').hide();
+  $('#editor-wrap').css('height', '100vh');
+}
+
+window.showConsole = function() {
+  $('#black-stuff').show().css('height', '33.5vh');
+  $('#editor-wrap').css('height', '65vh');
 }

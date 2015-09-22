@@ -5,11 +5,14 @@ $gray-2: #ddd;
 $gray-3: #ccc;
 $gray-4: #bbb;
 
+html, body, #left {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   height: 100vh;
   font-family: "open sans", arial;
-  overflow: hidden;
 }
 
 a {
@@ -145,8 +148,7 @@ nav {
     position: absolute;
     top: 0;
     right: 10px;
-    font-weight: bold;
-    color: white;
+    color: gray;
     cursor: pointer;
     font-family: arial;
     &:hover { color: $console-blue; }

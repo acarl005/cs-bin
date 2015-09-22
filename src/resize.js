@@ -18,8 +18,8 @@ $(document).ready(e => {
       // prevent them from resizing below the bottom of the page
       if (
         pxToNum(change) + pxToNum(editorHeight) > 
-        window.innerHeight - 100
-      ) return $('.resize').trigger('mouseup');
+        window.innerHeight - 50
+      ) return;
 
       var oper = '+-';
       if (change[0] === '-') {

@@ -5,8 +5,6 @@ $gray-2: #ddd;
 $gray-3: #ccc;
 $gray-4: #bbb;
 
-html { overflow: hidden; }
-
 body {
   margin: 0;
   height: 100vh;
@@ -87,6 +85,7 @@ nav {
 
 .CodeMirror {
   height: 100%;
+  font-size: 16px;
 }
 
 #editor-wrap {
@@ -134,6 +133,7 @@ nav {
 #console {
   position: relative;
   padding: 10px;
+  font-size: 18px;
   background-color: black;
   color: $console-blue;
   font-family: courier;

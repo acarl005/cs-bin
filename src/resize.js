@@ -1,7 +1,13 @@
+var refreshHeights, editorHeight, consoleHeight;
+
 $(document).ready(e => {
 
-  var editorHeight = $('#editor-wrap').css('height');
-  var consoleHeight = $('#console').css('height');
+  editorHeight = $('#editor-wrap').css('height');
+  consoleHeight = $('#console').css('height');
+  refreshHeights = function() {
+    editorHeight = $('#editor-wrap').css('height');
+    consoleHeight = $('#console').css('height');    
+  }
 
   $('.resize').draggable({
     axis: 'y',
@@ -12,8 +18,8 @@ $(document).ready(e => {
       // prevent them from resizing below the bottom of the page
       if (
         pxToNum(change) + pxToNum(editorHeight) > 
-        window.innerHeight - 50
-      ) throw '';
+        window.innerHeight - 100
+      ) return $('.resize').trigger('mouseup');
 
       var oper = '+-';
       if (change[0] === '-') {
@@ -25,8 +31,7 @@ $(document).ready(e => {
     },
 
     stop: e => {
-      editorHeight = $('#editor-wrap').css('height');
-      consoleHeight = $('#console').css('height');
+      refreshHeights();
       e.target.style.top = 0;
       editor.refresh();
     }
@@ -45,9 +50,14 @@ function pxToNum(str) {
 window.hideConsole = function() {
   $('#black-stuff').hide();
   $('#editor-wrap').css('height', '100vh');
+  try { editor.refresh(); } catch(err) {}
 }
 
 window.showConsole = function() {
-  $('#black-stuff').show().css('height', '33.5vh');
+  if ($('#black-stuff').css('display') !== 'none') return;
+  $('#black-stuff').show()
+  $('#console').css('height', '33.5vh');
   $('#editor-wrap').css('height', '65vh');
+  refreshHeights();
+  editor.refresh();
 }

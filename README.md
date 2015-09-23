@@ -11,3 +11,5 @@ npm run start-dev
 ```
 
 [http://cs-bin-stag.elasticbeanstalk.com/](http://cs-bin-stag.elasticbeanstalk.com/)
+[http://cs-bin-prod.elasticbeanstalk.com/](http://cs-bin-stag.elasticbeanstalk.com/)
+

@@ -4,7 +4,6 @@
 <head>
   <title>CS Bin</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
 
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/third_party/CodeMirror-4.0.3/lib/codemirror.css">
@@ -14,15 +13,10 @@
   <link rel="stylesheet" href="/style.min.css">
 
   <script src="/third_party/CodeMirror-4.0.3/lib/codemirror.js"></script>
-  <script src="/third_party/CodeMirror-4.0.3/addon/search/searchcursor.js"></script>
-  <script src="/third_party/CodeMirror-4.0.3/addon/search/search.js"></script>
-  <script src="/third_party/CodeMirror-4.0.3/addon/dialog/dialog.js"></script>
   <script src="/third_party/CodeMirror-4.0.3/addon/edit/matchbrackets.js"></script>
   <script src="/third_party/CodeMirror-4.0.3/addon/edit/closebrackets.js"></script>
   <script src="/third_party/CodeMirror-4.0.3/addon/comment/comment.js"></script>
   <script src="/third_party/CodeMirror-4.0.3/addon/wrap/hardwrap.js"></script>
-  <script src="/third_party/CodeMirror-4.0.3/addon/fold/foldcode.js"></script>
-  <script src="/third_party/CodeMirror-4.0.3/addon/fold/brace-fold.js"></script>
   <script src="/third_party/CodeMirror-4.0.3/mode/javascript/javascript.js"></script>
   <script src="/third_party/CodeMirror-4.0.3/keymap/sublime.js"></script>
 
@@ -31,7 +25,7 @@
 
   <div id="left">
     <div id='editor-wrap'>
-      <textarea id="code-editor"><%- include(challenges) %></textarea>
+      <textarea id="code-editor" autofocus><%- include(challenges) %></textarea>
 
       <div class="btn-group">
         <button id="execute" class="btn btn-primary">Run Code</button>
@@ -40,15 +34,18 @@
       </div>
     </div>
 
-    <div id="resize-wrap">
-      <div class="resize"></div>
-    </div>
+    <div id="black-stuff">
+      <div id="resize-wrap">
+        <div class="resize"></div>
+      </div>
 
-    <div id="console">
-      <div id="output"></div>
-      <form id="prompt">
-        &gt <input type="text" name="shell">
-      </form>
+      <div id="console">
+        <div id="close">X</div>
+        <div id="output"></div>
+        <form id="prompt">
+          &gt <input type="text" name="shell">
+        </form>
+      </div>
     </div>
   </div>
 
@@ -68,7 +65,7 @@
   </div>
 
   <script src="/third_party/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <script src="/third_party/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
   <script src="/third_party/esprima.js"></script>
   <script src="/bundle.js"></script>
 

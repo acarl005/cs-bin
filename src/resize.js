@@ -1,7 +1,13 @@
+var refreshHeights, editorHeight, consoleHeight;
+
 $(document).ready(e => {
 
-  var editorHeight = $('#editor-wrap').css('height');
-  var consoleHeight = $('#console').css('height');
+  editorHeight = $('#editor-wrap').css('height');
+  consoleHeight = $('#console').css('height');
+  refreshHeights = function() {
+    editorHeight = $('#editor-wrap').css('height');
+    consoleHeight = $('#console').css('height');    
+  }
 
   $('.resize').draggable({
     axis: 'y',
@@ -25,14 +31,33 @@ $(document).ready(e => {
     },
 
     stop: e => {
-      editorHeight = $('#editor-wrap').css('height');
-      consoleHeight = $('#console').css('height');
+      refreshHeights();
       e.target.style.top = 0;
       editor.refresh();
     }
-  })
+  });
+
+  hideConsole();
+  $('#execute').on('click', showConsole);
+  $('#close').on('click', hideConsole);
+
 });
 
 function pxToNum(str) {
   return +str.slice(0, -2);
+}
+
+window.hideConsole = function() {
+  $('#black-stuff').hide();
+  $('#editor-wrap').css('height', '100vh');
+  try { editor.refresh(); } catch(err) {}
+}
+
+window.showConsole = function() {
+  if ($('#black-stuff').css('display') !== 'none') return;
+  $('#black-stuff').show()
+  $('#console').css('height', '33.5vh');
+  $('#editor-wrap').css('height', '65vh');
+  refreshHeights();
+  editor.refresh();
 }

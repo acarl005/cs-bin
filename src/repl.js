@@ -49,7 +49,7 @@ function updateErrors() {
   errWidgets = [];
 
   try {
-    var syntax = esprima.parse(code, { tolerant: true, loc: true });
+    var syntax = esprima.parse(code, { tolerant: false, loc: true });
     var evalErr;
     var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err }`;
 

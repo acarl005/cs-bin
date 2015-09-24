@@ -38,6 +38,14 @@
 
   The function <code>forEach</code> takes an array and a callback. It runs the callback on each element of the array - and that's it!
 
+  <pre style='color:#000000;background:#ccc;'><span style='color:#800000; font-weight:bold; '>var</span> alphabet <span style='color:#808030; '>=</span> <span style='color:#800000; '>'</span><span style='color:#800000; '>'</span><span style='color:#800080; '>;</span>
+<span style='color:#800000; font-weight:bold; '>var</span> letters <span style='color:#808030; '>=</span> <span style='color:#808030; '>[</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>a</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>b</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>c</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>d</span><span style='color:#800000; '>'</span><span style='color:#808030; '>]</span><span style='color:#800080; '>;</span>
+forEach<span style='color:#808030; '>(</span>letters<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>char</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+  alphabet <span style='color:#808030; '>+=</span> <span style='color:#800000; font-weight:bold; '>char</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span>alphabet<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>   <span style='color:#696969; '>//prints 'abcd'</span>
+</pre>
+
 </li>
 
 

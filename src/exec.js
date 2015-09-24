@@ -4,7 +4,7 @@ module.exports = function(hasErrors) {
     $('#console form').on('submit', repl);
     $('#execute').on('click', execute);
     $(window).on('keypress', e => {
-      e.ctrlKey && e.keyCode && execute();   //execute if they press ctrl+b in chrome
+      e.ctrlKey && e.keyCode && execute() && showConsole();   //execute if they press ctrl+b in chrome
     });
 
     $('#console form').on('keydown', e => {
@@ -44,7 +44,7 @@ module.exports = function(hasErrors) {
       // this eval/String thing is pretty weird right? It's basically a hack that Rob and I devised to "clone" a function. It takes a func, converts to a string, then redefines it in an eval. This effectively achieves dynamic scoping. By redefining it in this scope, I can access the local variables here instead of the default lexical scoping behavior. The reason I want this is so the repl has access to the variables defined in the CodeMirror editor.
 
     });
-
+    return true;
   }
 }
 

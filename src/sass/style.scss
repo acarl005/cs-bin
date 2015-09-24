@@ -137,13 +137,14 @@ nav {
 #console {
   position: relative;
   padding: 10px;
-  font-size: 18px;
+  font-size: 20px;
   background-color: black;
   color: $console-blue;
   font-family: courier;
   height: 33.5vh;
   overflow: auto;
   box-sizing: border-box;
+  cursor: text;
   p { margin: 0; }
   #close {
     position: absolute;

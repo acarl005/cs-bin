@@ -2,6 +2,9 @@ module.exports = function(hasErrors) {
   $(document).ready(() => {
 
     $('#console form').on('submit', repl);
+    $('#console').on('click', e => {
+      $('input').focus();
+    });
     $('#execute').on('click', execute);
     $(window).on('keypress', e => {
       e.ctrlKey && e.keyCode && execute() && showConsole();   //execute if they press ctrl+b in chrome

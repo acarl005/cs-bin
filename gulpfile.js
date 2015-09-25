@@ -50,7 +50,10 @@ function scripts() {
 function serve() {
   nodemon({
     script: 'server.js',
-    ignore: ['src']
+    ignore: ['src'],
+    env: {
+      NODE_ENV: 'test'
+    }
   });
 }
 

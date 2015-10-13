@@ -18,7 +18,7 @@ module.exports = function(hasErrors) {
       } else {
         return 'we can ignore this';
       }
-      // make sure commandIndex stays in reasonable range
+      // make sure commandIndex stays within range range
       commandIndex = Math.min(commandStack.length - 1, commandIndex);
       commandIndex = Math.max(-1, commandIndex);
       $('#console form input').val(commandStack[commandIndex]);

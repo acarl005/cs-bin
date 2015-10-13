@@ -50,6 +50,7 @@ function pxToNum(str) {
 window.hideConsole = function() {
   $('#black-stuff').hide();
   $('#editor-wrap').css('height', '100vh');
+  //console hides on load, and sometimes the editor isn't defined yet. this prevents "undefined is not a func" errors
   try { editor.refresh(); } catch(err) {}
 }
 

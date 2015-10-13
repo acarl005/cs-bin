@@ -1,3 +1,7 @@
+var TIMEOUT = 800;
+var ps;
+spawnWorker();
+
 window.onload = function() {
 
   window.editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
@@ -13,7 +17,7 @@ window.onload = function() {
   var waiting;
   editor.on("change", () => {
     clearTimeout(waiting);
-    waiting = setTimeout(updateErrors, 800);
+    waiting = setTimeout(updateErrors, TIMEOUT);
   });
 
   var save = require('./save');
@@ -50,17 +54,8 @@ function updateErrors() {
 
   try {
     var syntax = esprima.parse(code, { tolerant: false, loc: true });
-    var evalErr;
-    var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err }`;
-
-    eval(wrappedCode);
-    if (evalErr) {
-      var stack = evalErr.stack;
-      var errMessage = evalErr.message || stack.match(/.*/)[0];     // firefox || chrome
-      var lineNum = evalErr.lineNumber || stack.match(/<anonymous>:(\d+):\d+/)[1];
-      // var colNum = evalErr.columnNumber || stack.match(/<anonymous>:\d+:(\d+)/)[0];
-      renderErr(lineNum, errMessage);
-    }
+    webWorker.postMessage(code);
+    ps = setTimeout(killWorker, TIMEOUT);
   } catch (err) {
     renderErr(err.lineNumber, err.description, err.column);
   }
@@ -73,6 +68,22 @@ window.replaceEditorText = function(text) {
     CodeMirror.Pos(editor.firstLine()-1),
     CodeMirror.Pos(editor.lastLine())
   );
+}
+
+function killWorker() {
+  webWorker.terminate();
+  renderErr(1, 'The code is taking a while. You might have an infinite loop.')
+  spawnWorker();
+}
+
+function spawnWorker() {
+  window.webWorker = new Worker('worker.js');
+  webWorker.onmessage = e => {
+    if (e.data.message) {
+      renderErr(e.data.lineNumber, e.data.message);
+    }
+    clearTimeout(ps);
+  };
 }
 
 var execute = require('./exec');

@@ -41,6 +41,7 @@ module.exports = function(hasErrors) {
     wrapLogOutput(() => {
 
       eval(code);
+      console.log('\n');
 
       $('#console form').off('submit');
       $('#console form').on('submit', eval('('+String(repl)+')'));

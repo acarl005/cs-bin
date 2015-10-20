@@ -140,7 +140,7 @@ nav {
 
 #console {
   position: relative;
-  padding: 10px;
+  padding: 10px 10px 30px 10px;
   font-size: 20px;
   background-color: black;
   color: $console-blue;
@@ -173,6 +173,7 @@ nav {
     display: inline-block;
     color: inherit;
     font-family: inherit;
+    font-size: inherit;
     border: none;
     &:focus { outline: 0; }
   }

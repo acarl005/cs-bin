@@ -4,7 +4,7 @@ module.exports = function(editor) {
 
   $('#save').on('click', e => {
     localStorage.setItem(path, editor.getValue());
-    alert('Progress saved.')
+    alertify.success('Progress saved.');
   });
 
   var saved = localStorage.getItem(path);
@@ -13,10 +13,14 @@ module.exports = function(editor) {
   }
 
   $('#clear').on('click', e => {
-    if (confirm('Are you sure? This will remove saved progress.')) {
-      localStorage.removeItem(path);
-      replaceEditorText($('#code-editor').val());
-    }
+    var msg = 'Are you sure? This will remove saved progress and restore the challenges to their former state.';
+    alertify.confirm(msg, theySaidYes => {
+      if (theySaidYes) {
+        localStorage.removeItem(path);
+        replaceEditorText($('#code-editor').val());
+        alertify.error('Saved progress removed.');
+      }
+    });
   });
 
 }

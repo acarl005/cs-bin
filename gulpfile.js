@@ -8,6 +8,18 @@ var concat = require('gulp-concat');
 var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
+var notify = require('gulp-notify');
+
+function handleErrors() {
+  var args = Array.prototype.slice.call(arguments);
+  notify.onError({
+    title : 'Compile Error',
+    message : '<%= error.message %>'
+  }).apply(this, args);
+  //console.log('Compile error: ', args);
+  this.emit('end'); //keeps gulp from hanging on this task
+}
+
 
 gulp.task('browserify', scripts)
     .task('serve', serve);
@@ -31,9 +43,7 @@ function scripts() {
       var updateStart = Date.now();
       console.log('Updating!');
       watcher.bundle()
-      .on('error', function(err) {
-        console.log('Error with compiling components', err.message);
-      })
+      .on('error', handleErrors)
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('./dest/'));
       console.log('Updated!', (Date.now() - updateStart) + 'ms');

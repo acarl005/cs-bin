@@ -1,6 +1,6 @@
-onmessage = e => {
+onmessage = function(e) {
   var evalErr;
-  var wrappedCode = `try{ ${e.data}\n } catch(err) { evalErr = err }`;
+  var wrappedCode = 'try { ' + e.data + '\n } catch(err) { evalErr = err }';
 
   eval(wrappedCode);
   if (evalErr) {

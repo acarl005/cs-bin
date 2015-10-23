@@ -10,6 +10,7 @@ module.exports = function(hasErrors) {
       if (e.ctrlKey && e.keyCode === 83) {
         e.preventDefault();
         execute() && showConsole();   //execute if they press ctrl+s
+      }
     });
 
     $('#console form').on('keydown', e => {

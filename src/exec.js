@@ -6,8 +6,10 @@ module.exports = function(hasErrors) {
       $('input').focus();
     });
     $('#execute').on('click', execute);
-    $(window).on('keypress', e => {
-      e.ctrlKey && e.keyCode && execute() && showConsole();   //execute if they press ctrl+b in chrome
+    $(window).on('keydown', e => {
+      if (e.ctrlKey && e.keyCode === 83) {
+        e.preventDefault();
+        execute() && showConsole();   //execute if they press ctrl+s
     });
 
     $('#console form').on('keydown', e => {
@@ -30,6 +32,7 @@ module.exports = function(hasErrors) {
     var errors = hasErrors();
     var error = errors[0];
     if (error){
+      alertify.error('Code has errors. Not executing.');
       return render(
         error.node.innerText || $(error.node).text(),    // chrome || firefox
         { error: true, lineNum: editor.getLineNumber(error.line) + 1 }
@@ -37,6 +40,8 @@ module.exports = function(hasErrors) {
     }
 
     var code = editor.getValue();
+
+    alertify.success(`Executing ${code.split('\n').length} lines of javascript.`);
 
     wrapLogOutput(() => {
 

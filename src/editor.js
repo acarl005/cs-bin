@@ -4,6 +4,7 @@ spawnWorker();
 
 window.onload = function() {
 
+  // initialize the editor
   window.editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
     lineNumbers: true,
     mode: "javascript",
@@ -14,23 +15,31 @@ window.onload = function() {
     theme: 'ttcn'
   });
 
+  // checks for errors if the editor changes. waits TIMEOUT ms after they finish typing
   var waiting;
   editor.on("change", () => {
     clearTimeout(waiting);
     waiting = setTimeout(updateErrors, TIMEOUT);
   });
 
+  // adds the save feature
   var save = require('./save');
   save(editor);
 
 };
 
+// adds resizing feature 
+require('./resize');
+
+
+// this will hold the error objects, if any
 var errWidgets = [];
 
 function checkForErrors() {
   return errWidgets;
 }
 
+// display the error message in the editor
 function renderErr(lineNum, desc, colNum) {
   if (!lineNum) throw new Error('Line number for renderErr must be a valid integer.');
   var msg = $(`
@@ -44,6 +53,7 @@ function renderErr(lineNum, desc, colNum) {
   );
 }
 
+// do another check for errors
 function updateErrors() {
   var code = editor.getValue();
 
@@ -53,9 +63,13 @@ function updateErrors() {
   errWidgets = [];
 
   try {
+    // let esprima check for syntax errors
     var syntax = esprima.parse(code, { tolerant: false, loc: true });
+
+    //send code to the web worker to execute and check for errors
     webWorker.postMessage(code);
     ps = setTimeout(killWorker, TIMEOUT);
+
   } catch (err) {
     renderErr(err.lineNumber, err.description, err.column);
   }
@@ -88,4 +102,3 @@ function spawnWorker() {
 
 var execute = require('./exec');
 execute(checkForErrors);
-require('./resize');

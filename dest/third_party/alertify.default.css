@@ -59,7 +59,7 @@
 		.alertify-button-ok,
 		.alertify-button-ok:hover,
 		.alertify-button-ok:focus {
-			background-color: #5CB811;
+			background-color: #0099FF;
 			border: 1px solid #3B7808;
 		}
 
@@ -73,9 +73,9 @@
 }
 	.alertify-log-error {
 		background: #FE1A00;
-		background: rgba(254,26,0,.9);
+		background: rgb(254,26,0);
 	}
 	.alertify-log-success {
-		background: #5CB811;
-		background: rgba(92,184,17,.9);
+		background: #0099FF;
+		background: rgb(0,153,255);
 	}

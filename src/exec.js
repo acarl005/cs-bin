@@ -1,18 +1,27 @@
 module.exports = function(hasErrors) {
+
   $(document).ready(() => {
 
+    // powers the REPL
     $('#console form').on('submit', repl);
+
+    // places cursor in the prompt if they click anywhere in the console
     $('#console').on('click', e => {
       $('input').focus();
     });
+
+    //runs the code from the editor if the button is clicked
     $('#execute').on('click', execute);
+
+    //runs the code from the editor if ctrl+s is pressed
     $(window).on('keydown', e => {
       if (e.ctrlKey && e.keyCode === 83) {
         e.preventDefault();
-        execute() && showConsole();   //execute if they press ctrl+s
+        execute() && showConsole();
       }
     });
 
+    // enable command history for the REPL
     $('#console form').on('keydown', e => {
       if (e.keyCode === 38) {  //up arrow key
         commandIndex++;
@@ -26,6 +35,7 @@ module.exports = function(hasErrors) {
       commandIndex = Math.max(-1, commandIndex);
       $('#console form input').val(commandStack[commandIndex]);
     });
+    
   });
 
   function execute() {
@@ -36,7 +46,10 @@ module.exports = function(hasErrors) {
       alertify.error('Code has errors. Not executing.');
       return render(
         error.node.innerText || $(error.node).text(),    // chrome || firefox
-        { error: true, lineNum: editor.getLineNumber(error.line) + 1 }
+        { 
+          error: true, 
+          lineNum: editor.getLineNumber(error.line) + 1 
+        }
       );
     }
 
@@ -62,6 +75,7 @@ module.exports = function(hasErrors) {
 var commandStack = [];
 var commandIndex = -1;
 
+// place text in the console
 function render(text, options={}) {
   if (typeof text === 'object') {
     text = JSON.stringify(text, null, 4);
@@ -88,11 +102,12 @@ function render(text, options={}) {
   consoleDOM.scrollTop = consoleDOM.scrollHeight;
 }
 
+// run the REPL command
 function repl(e) {
   e.preventDefault();
   var code = $(e.target).find('input').val();
   commandStack.unshift(code);
-  commandStack = commandStack.slice(0, 9);
+  commandStack = commandStack.slice(0, 9); // only remember the last 10 commands
   commandIndex = -1;
   wrapLogOutput(() => {
     $(e.target).find('input').val('');

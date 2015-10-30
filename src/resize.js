@@ -2,12 +2,11 @@ var refreshHeights, editorHeight, consoleHeight;
 
 $(document).ready(e => {
 
-  editorHeight = $('#editor-wrap').css('height');
-  consoleHeight = $('#console').css('height');
   refreshHeights = function() {
     editorHeight = $('#editor-wrap').css('height');
     consoleHeight = $('#console').css('height');    
-  }
+  };
+  refreshHeights();
 
   $('.resize').draggable({
     axis: 'y',

@@ -26,7 +26,7 @@ gulp.task('browserify', scripts)
 
 function scripts() {
   var bundler = browserify({
-    entries: ['./src/repl.js'],
+    entries: ['./src/editor.js'],
     transform: [
       ['babelify', { blacklist: 'strict' }],
       ['uglifyify']

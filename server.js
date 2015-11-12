@@ -7,8 +7,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/cs-admin', function(req, res) {
-  var folders = getViews();
-  res.render('admin', { views: folders });
+  res.render('admin', { views: getViews() });
 });
 
 app.use(express.static('dest'));

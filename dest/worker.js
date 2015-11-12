@@ -6,7 +6,7 @@ onmessage = function(e) {
   if (evalErr) {
     var stack = evalErr.stack;
     var errMessage = evalErr.message || stack.match(/.*/)[0];     // firefox || chrome
-    var lineNum = evalErr.lineNumber || stack.match(/<anonymous>:(\d+):\d+/)[1];
+    var lineNum = evalErr.lineNumber || evalErr.line || stack.match(/<anonymous>:(\d+):\d+/)[1];   // firefox || safari || chrome
     // var colNum = evalErr.columnNumber || stack.match(/<anonymous>:\d+:(\d+)/)[0];
     postMessage({ message: errMessage, lineNumber: lineNum });
   } else {

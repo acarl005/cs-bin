@@ -70,8 +70,14 @@ function updateErrors() {
     webWorker.postMessage(code);
     ps = setTimeout(killWorker, TIMEOUT);
 
+
   } catch (err) {
-    renderErr(err.lineNumber, err.description, err.column);
+
+    renderErr(
+      err.lineNumber || err.line, 
+      err.description || err.message, 
+      err.column
+    );
   }
 
 }

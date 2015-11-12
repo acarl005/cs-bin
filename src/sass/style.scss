@@ -54,7 +54,7 @@ pre {
   top: 0;
   height: 100%;
   overflow: auto;
-  h1 { border-bottom: 1px solid #aaa }
+  h1 { border-bottom: 1px solid #aaa; }
 }
 
 nav {
@@ -227,6 +227,8 @@ nav {
 }
 
 #instruct {
+  padding-bottom: 40px;
+
   ul>li {
     margin-bottom: 15px;
   }
@@ -234,6 +236,24 @@ nav {
   li h3 {
     margin-top: 20px;
     margin-bottom: 8px;
+  }
+}
+
+#right footer {
+  width: 40%;
+  border-top: 1px solid $gray-2;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 5px;
+  background-color: $gray-1;
+  img {
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
   }
 }
 

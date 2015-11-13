@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "./node_modules/.bin/gulp",
-    "test": "./runcasper test/casper"
+    "test": "./test/runcasper test/casper"
   },
   "author": "",
   "license": "ISC",

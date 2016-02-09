@@ -11,12 +11,11 @@ var sourcemaps = require('gulp-sourcemaps');
 var notify = require('gulp-notify');
 
 function handleErrors() {
-  var args = Array.prototype.slice.call(arguments);
+  // var args = Array.prototype.slice.call(arguments);
   notify.onError({
     title : 'Compile Error',
     message : '<%= error.message %>'
-  }).apply(this, args);
-  //console.log('Compile error: ', args);
+  }).apply(this, arguments);
   this.emit('end'); //keeps gulp from hanging on this task
 }
 

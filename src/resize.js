@@ -4,19 +4,19 @@ $(document).ready(e => {
 
   refreshHeights = function() {
     editorHeight = $('#editor-wrap').css('height');
-    consoleHeight = $('#console').css('height');    
+    consoleHeight = $('#console').css('height');
   };
   refreshHeights();
 
   $('.resize').draggable({
     axis: 'y',
-    
+
     drag: e => {
       var change = e.target.style.top;
 
       // prevent them from resizing below the bottom of the page
       if (
-        pxToNum(change) + pxToNum(editorHeight) > 
+        pxToNum(change) + pxToNum(editorHeight) >
         window.innerHeight - 50
       ) return;
 
@@ -51,13 +51,13 @@ window.hideConsole = function() {
   $('#editor-wrap').css('height', '100vh');
   //console hides on load, and sometimes the editor isn't defined yet. this prevents "undefined is not a func" errors
   try { editor.refresh(); } catch(err) {}
-}
+};
 
 window.showConsole = function() {
   if ($('#black-stuff').css('display') !== 'none') return;
-  $('#black-stuff').show()
+  $('#black-stuff').show();
   $('#console').css('height', '33.5vh');
   $('#editor-wrap').css('height', '65vh');
   refreshHeights();
   editor.refresh();
-}
+};

@@ -10,9 +10,4 @@ npm install
 npm run start-dev
 ```
 
-[http://cs-bin-stag.elasticbeanstalk.com/](http://cs-bin-stag.elasticbeanstalk.com/)
 [http://csbin.io/](http://csbin.io/)
-
-
-Admin page: 
-[http://csbin.io/cs-admin](http://csbin.io/cs-admin)

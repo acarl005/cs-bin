@@ -35,7 +35,7 @@ module.exports = function(hasErrors) {
       commandIndex = Math.max(-1, commandIndex);
       $('#console form input').val(commandStack[commandIndex]);
     });
-    
+
   });
 
   function execute() {
@@ -46,9 +46,9 @@ module.exports = function(hasErrors) {
       alertify.error('Code has errors. Not executing.');
       return render(
         error.node.innerText || $(error.node).text(),    // chrome || firefox
-        { 
-          error: true, 
-          lineNum: editor.getLineNumber(error.line) + 1 
+        {
+          error: true,
+          lineNum: editor.getLineNumber(error.line) + 1
         }
       );
     }
@@ -69,7 +69,7 @@ module.exports = function(hasErrors) {
     });
     return true;
   }
-}
+};
 
 // allow user to access previously entered commands
 var commandStack = [];
@@ -85,7 +85,7 @@ function render(text, options={}) {
 
   // This particular err message is poor. Make it a bit more helpful
   text = text.replace(
-    /Unexpected end of input/, 
+    /Unexpected end of input/,
     'Unexpected end of input: probably an extra opening bracket or operator.'
   );
 
@@ -115,10 +115,10 @@ function repl(e) {
     //var declarations don't work in the REPL, so give them an error
     if (code.match(/var/)) return render('do var declarations in the editor above', { error: true });
 
-    var evalErr;
+    var evalErr, output;
     var wrappedCode = `try{ ${code}\n } catch(err) { evalErr = err }`;
     try {
-      var output = eval(wrappedCode);
+      output = eval(wrappedCode);
     } catch (err) {
       evalErr = err;
     }
@@ -138,11 +138,7 @@ function wrapLogOutput(func) {
       render(line);
     });
     console.nativeLog(...arguments);
-  }
+  };
   func();
   console.log = console.nativeLog;
 }
-
-
-
-

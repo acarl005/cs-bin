@@ -28,7 +28,7 @@ window.onload = function() {
 
 };
 
-// adds resizing feature 
+// adds resizing feature
 require('./resize');
 
 
@@ -74,8 +74,8 @@ function updateErrors() {
   } catch (err) {
 
     renderErr(
-      err.lineNumber || err.line, 
-      err.description || err.message, 
+      err.lineNumber || err.line,
+      err.description || err.message,
       err.column
     );
   }
@@ -88,11 +88,11 @@ window.replaceEditorText = function(text) {
     CodeMirror.Pos(editor.firstLine()-1),
     CodeMirror.Pos(editor.lastLine())
   );
-}
+};
 
 function killWorker() {
   webWorker.terminate();
-  renderErr(1, 'The code is taking a while. You might have an infinite loop.')
+  renderErr(1, 'The code is taking a while. You might have an infinite loop.');
   spawnWorker();
 }
 

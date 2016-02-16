@@ -26,7 +26,7 @@ casper.test.begin('test the UI', function(test) {
 
   casper.then(function() {
     this.evaluate(function() {
-      replaceEditorText('fuction add1(n) { return n+1; }')
+      replaceEditorText('fuction add1(n) { return n+1; }');
     });
     this.waitForSelector('.lint-error');
   });
@@ -34,7 +34,7 @@ casper.test.begin('test the UI', function(test) {
   casper.then(function() {
     test.assertTextExists('Unexpected identifier', 'should see error message');
     this.evaluate(function() {
-      replaceEditorText('function add1(n) { return n+1; }')
+      replaceEditorText('function add1(n) { return n+1; }');
     });
     this.waitWhileSelector('.lint-error');
   });
@@ -48,8 +48,8 @@ casper.test.begin('test the UI', function(test) {
     this.fill('#prompt', {
       shell: 'ergnerogue',
     }, true);
-    test.assertSelectorHasText('.error', 'Can\'t find variable:', 'should see error message for undefined variable');
-    test.assertSelectorHasText('.error', 'ergnerogue', 'should show the offending variable name');
+    test.assertSelectorHasText('.stderr', 'Can\'t find variable:', 'should see error message for undefined variable');
+    test.assertSelectorHasText('.stderr', 'ergnerogue', 'should show the offending variable name');
     this.click('#prompt input');
     this.evaluate(function() {
       $('#prompt input').focus();

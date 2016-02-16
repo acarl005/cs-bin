@@ -92,10 +92,10 @@ function render(text, options={}) {
   if (options.arrow)
     text = `=> ${text}`;
   if (options.error)
-    text = `<span class="error">${text}</span>`;
+    text = `<span class="stderr">${text}</span>`;
   if (options.lineNum)
     text = text.replace(/!/, `line ${options.lineNum} - `);
-  $('#console #output').append(`<p>${text}</p>`);
+  $('#console #output').append(`<p><span class="stdout">${text}</span></p>`);
 
   // scroll to bottom in order to show most recent
   var consoleDOM = document.getElementById('console');

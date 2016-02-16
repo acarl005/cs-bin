@@ -1,4 +1,4 @@
-var TIMEOUT = 800;
+var TIMEOUT = 1200;
 var ps;
 spawnWorker();
 
@@ -12,7 +12,7 @@ window.onload = function() {
     autoCloseBrackets: true,
     keyMap: 'sublime',
     tabSize: 2,
-    theme: 'ttcn'
+    theme: 'dracula'
   });
 
   // checks for errors if the editor changes. waits TIMEOUT ms after they finish typing

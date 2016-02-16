@@ -1,5 +1,6 @@
 $light-blue: #0099FF;
 $console-blue: #33CCFF;
+$neon-blue: #063a4b;
 $gray-1: #eee;
 $gray-2: #ddd;
 $gray-3: #ccc;
@@ -150,7 +151,16 @@ nav {
   height: 33.5vh;
   overflow: auto;
   cursor: text;
-  p { margin: 0; }
+  p {
+    margin: 0;
+  }
+  .stdout {
+    text-shadow: 0 0 5px $console-blue, 0 0 10px $console-blue, 0 0 15px $console-blue, 0 0 20px $neon-blue, 0 0 35px $neon-blue, 0 0 40px $neon-blue, 0 0 50px $neon-blue, 0 0 75px $neon-blue;
+  }
+  .stderr {
+    color: red;
+    text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px rgb(115, 5, 5), 0 0 35px rgb(115, 5, 5), 0 0 40px rgb(115, 5, 5), 0 0 50px rgb(115, 5, 5), 0 0 75px rgb(115, 5, 5);
+  }
   #close {
     position: absolute;
     top: 0;
@@ -161,6 +171,7 @@ nav {
     &:hover { color: $console-blue; }
   }
 }
+
 
 #prompt {
   position: fixed;
@@ -189,6 +200,8 @@ nav {
   cursor: pointer;
   border-radius: 6px;
   transition: 0.4s;
+  font-family: "Lato", 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 200;
   &:active {
     transition: 0s;
     box-shadow: none;
@@ -198,13 +211,11 @@ nav {
 .btn-primary {
   background-color: $light-blue;
   color: white;
-  box-shadow: 2px 2px #1F7A99;
   &:hover {
-    color: black;
-    background-color: #33CCFF;
+    background-color: #0049b6;
   }
   &:active {
-    background-color: #1F7A99;
+    background-color: #053378;
     transition: 0s;
   }
 }
@@ -212,20 +223,15 @@ nav {
 .btn-danger {
   background-color: red;
   color: white;
-  box-shadow: 2px 2px #BB0000;
   &:hover {
-    color: black;
-    background-color: #FF6699;
+    background-color: rgb(115, 5, 5);
   }
   &:active {
-    background-color: #BB0000;
+    background-color: rgb(80, 4, 4);
     transition: 0s;
   }
 }
 
-.error {
-  color: red;
-}
 
 #instruct {
   padding-bottom: 40px;
@@ -258,77 +264,26 @@ nav {
   }
 }
 
-.correct::before {
-  content: "✔";
+
+// customize codemirror theme
+.cm-s-dracula span.cm-variable {
+  color: white;
 }
 
-.correct {
-  color: green;
+.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {
+  background-color: #151728 !important;
 }
 
+.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 {
+    color: #fae58c;
+}
 
-/* customize codemirror color */
-.cm-s-ttcn .cm-quote { color: #090; }
-.cm-s-ttcn .cm-negative { color: #d44; }
-.cm-s-ttcn .cm-positive { color: #292; }
-.cm-s-ttcn .cm-header, .cm-strong { font-weight: bold; }
-.cm-s-ttcn .cm-em { font-style: italic; }
-.cm-s-ttcn .cm-link { text-decoration: underline; }
-.cm-s-ttcn .cm-strikethrough { text-decoration: line-through; }
-.cm-s-ttcn .cm-header { color: #00f; font-weight: bold; }
+.CodeMirror-cursor {
+  border-left: solid 1px white;
+}
 
-.cm-s-ttcn .cm-atom { color: #219; }
-.cm-s-ttcn .cm-attribute { color: #00c; }
-.cm-s-ttcn .cm-bracket { color: #997; }
-.cm-s-ttcn .cm-comment { color: #bbb; }
-.cm-s-ttcn .cm-def { color: #00f; }
-.cm-s-ttcn .cm-em { font-style: italic; }
-.cm-s-ttcn .cm-error { color: #f00; }
-.cm-s-ttcn .cm-hr { color: #999; }
-.cm-s-ttcn .cm-invalidchar { color: #f00; }
-.cm-s-ttcn .cm-keyword { font-weight:bold; }
-.cm-s-ttcn .cm-link { color: #00c; text-decoration: underline; }
-.cm-s-ttcn .cm-meta { color: #555; }
-.cm-s-ttcn .cm-negative { color: #d44; }
-.cm-s-ttcn .cm-positive { color: #292; }
-.cm-s-ttcn .cm-qualifier { color: #555; }
-.cm-s-ttcn .cm-strikethrough { text-decoration: line-through; }
-.cm-s-ttcn .cm-string { color: #006400; }
-.cm-s-ttcn .cm-string-2 { color: #f50; }
-.cm-s-ttcn .cm-strong { font-weight: bold; }
-.cm-s-ttcn .cm-tag { color: #170; }
-.cm-s-ttcn .cm-variable { color: #8B2252; }
-.cm-s-ttcn .cm-variable-2 { color: #05a; }
-.cm-s-ttcn .cm-variable-3 { color: #085; }
+.cm-s-dracula span.cm-property {
+    color: $console-blue;
+}
 
-.cm-s-ttcn .cm-invalidchar { color: #f00; }
-
-/* ASN */
-.cm-s-ttcn .cm-accessTypes,
-.cm-s-ttcn .cm-compareTypes { color: #27408B; }
-.cm-s-ttcn .cm-cmipVerbs { color: #8B2252; }
-.cm-s-ttcn .cm-modifier { color:#D2691E; }
-.cm-s-ttcn .cm-status { color:#8B4545; }
-.cm-s-ttcn .cm-storage { color:#A020F0; }
-.cm-s-ttcn .cm-tags { color:#006400; }
-
-/* CFG */
-.cm-s-ttcn .cm-externalCommands { color: #8B4545; font-weight:bold; }
-.cm-s-ttcn .cm-fileNCtrlMaskOptions,
-.cm-s-ttcn .cm-sectionTitle { color: #2E8B57; font-weight:bold; }
-
-/* TTCN */
-.cm-s-ttcn .cm-booleanConsts,
-.cm-s-ttcn .cm-otherConsts,
-.cm-s-ttcn .cm-verdictConsts { color: #006400; }
-.cm-s-ttcn .cm-configOps,
-.cm-s-ttcn .cm-functionOps,
-.cm-s-ttcn .cm-portOps,
-.cm-s-ttcn .cm-sutOps,
-.cm-s-ttcn .cm-timerOps,
-.cm-s-ttcn .cm-verdictOps { color: #0000FF; }
-.cm-s-ttcn .cm-preprocessor,
-.cm-s-ttcn .cm-templateMatch,
-.cm-s-ttcn .cm-ttcn3Macros { color: #27408B; }
-.cm-s-ttcn .cm-types { color: #A52A2A; font-weight:bold; }
-.cm-s-ttcn .cm-visibilityModifiers { font-weight:bold; }
+.cm-s-dracula .CodeMirror-cursor { border-left: solid 2px #f8f8f0 !important; }

@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var compress = require('compression');
 
 app.get('/', function(req, res) {
   res.render('index', { challenges: 'none' });
@@ -10,7 +11,12 @@ app.get('/cs-admin', function(req, res) {
   res.render('admin', { views: getViews() });
 });
 
-app.use(express.static('dest'));
+app.use(compress());
+var staticOptions = {};
+if (process.env.NODE_ENV === 'production') {
+  staticOptions.maxAge = 86400000; // one day
+}
+app.use(express.static('dest', staticOptions));
 
 fixTypos(['/callback'], '/callbacks');
 fixTypos(['/object', '/objects', '/classes'], '/oop');
@@ -21,7 +27,7 @@ app.get('/:challenge', function(req, res) {
   var view = {};
   if (folders.indexOf(req.params.challenge) === -1)
     view.challenges = 'error';
-  else 
+  else
     view.challenges = req.params.challenge;
   res.render('index', view);
 });
@@ -46,6 +52,6 @@ function getViews() {
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
+  console.log('running in', process.env.NODE_ENV);
   console.log("listening at http://localhost:" + port);
 });
-

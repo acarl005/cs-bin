@@ -1,40 +1,47 @@
-var refreshHeights, editorHeight, consoleHeight;
+var saveHeights, editorHeight, consoleHeight,
+    originalEditorHeight, originalConsoleHeight,
+    startY = 0, y = 0, $editor, $console;
+var $document = $(document);
 
-$(document).ready(e => {
+$document.ready(e => {
 
-  refreshHeights = function() {
-    editorHeight = $('#editor-wrap').css('height');
-    consoleHeight = $('#console').css('height');
-  };
-  refreshHeights();
+  var $resize = $('.resize');
+  $editor = $('#editor-wrap');
+  $console = $('#console');
+  originalEditorHeight = $editor.css('height');
+  originalConsoleHeight = $console.css('height');
 
-  $('.resize').draggable({
-    axis: 'y',
-
-    drag: e => {
-      var change = e.target.style.top;
-
-      // prevent them from resizing below the bottom of the page
-      if (
-        pxToNum(change) + pxToNum(editorHeight) >
-        window.innerHeight - 50
-      ) return;
-
-      var oper = '+-';
-      if (change[0] === '-') {
-        change = change.slice(1);
-        oper = '-+';
-      }
-      $('#editor-wrap').css('height', `calc(${editorHeight} ${oper[0]} ${change})`);
-      $('#console').css('height', `calc(${consoleHeight} ${oper[1]} ${change})`);
-    },
-
-    stop: e => {
-      refreshHeights();
-      e.target.style.top = 0;
-      editor.refresh();
-    }
+  $resize.on('mousedown', function(event) {
+    event.preventDefault();
+    startY = event.pageY - y;
+    $document.on('mousemove', mousemove);
+    $document.on('mouseup', mouseup);
   });
+
+  function mousemove(event) {
+    y = event.pageY - startY;
+    if (y + pxToNum(originalEditorHeight) > window.innerHeight - 50) return;
+    var y_str = String(y) + 'px';
+    var oper = '+-';
+    if (y_str[0] === '-') {
+      y_str = y_str.slice(1);
+      oper = '-+';
+    }
+    $editor.css('height', `calc(${originalEditorHeight} ${oper[0]} ${y_str})`);
+    $console.css('height', `calc(${originalConsoleHeight} ${oper[1]} ${y_str})`);
+  }
+
+  function mouseup() {
+    $document.off('mousemove', mousemove);
+    $document.off('mouseup', mouseup);
+    editor.refresh();
+  }
+
+  saveHeights = function() {
+    editorHeight = $editor.css('height');
+    consoleHeight = $console.css('height');
+  };
+  saveHeights();
 
   hideConsole();
   $('#execute').on('click', showConsole);
@@ -47,6 +54,7 @@ function pxToNum(str) {
 }
 
 window.hideConsole = function() {
+  saveHeights();
   $('#black-stuff').hide();
   $('#editor-wrap').css('height', '100vh');
   //console hides on load, and sometimes the editor isn't defined yet. this prevents "undefined is not a func" errors
@@ -56,8 +64,7 @@ window.hideConsole = function() {
 window.showConsole = function() {
   if ($('#black-stuff').css('display') !== 'none') return;
   $('#black-stuff').show();
-  $('#console').css('height', '33.5vh');
-  $('#editor-wrap').css('height', '65vh');
-  refreshHeights();
+  $('#console').css('height', consoleHeight);
+  $('#editor-wrap').css('height', editorHeight);
   editor.refresh();
 };

@@ -59,7 +59,7 @@ function scripts() {
 function serve() {
   nodemon({
     script: 'server.js',
-    ignore: ['src'],
+    watch: ['server.js', 'views/'],
     env: {
       NODE_ENV: 'test'
     }

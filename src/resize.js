@@ -1,4 +1,6 @@
-var saveHeights, editorHeight, consoleHeight, originalEditorHeight, originalConsoleHeight, startY = 0, y = 0, $editor, $console;
+var saveHeights, editorHeight, consoleHeight,
+    originalEditorHeight, originalConsoleHeight,
+    startY = 0, y = 0, $editor, $console;
 var $document = $(document);
 
 $document.ready(e => {

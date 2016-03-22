@@ -13,7 +13,11 @@ var namespaces = [
 ];
 function setUpSocket(socket) {
   socket.on('typing', function(data) {
-    socket.broadcast.emit('typing', data);
+    socket.to(socket.room).broadcast.emit('typing', data);
+  });
+  socket.on('join', function(room) {
+    socket.room = room;
+    socket.join(room);
   });
   socket.on('error', err => {
     console.error(err);
@@ -24,6 +28,8 @@ namespaces.forEach(function(nsp) {
   nsp.on('connection', setUpSocket);
 });
 io.on('connection', setUpSocket);
+
+app.use(compress());
 
 app.get('/', function(req, res) {
   var view = { challenges: 'none', pair: false };
@@ -37,7 +43,6 @@ app.get('/cs-admin', function(req, res) {
   res.render('admin', { views: getViews() });
 });
 
-app.use(compress());
 var staticOptions = {};
 if (process.env.NODE_ENV === 'production') {
   staticOptions.maxAge = 86400000; // one day

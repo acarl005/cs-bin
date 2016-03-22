@@ -2,7 +2,7 @@ var TIMEOUT = 1200;
 var ps;
 spawnWorker();
 
-window.onload = function() {
+document.onready = function() {
 
   // initialize the editor
   window.editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {

@@ -80,5 +80,21 @@
   <script src="/third_party/esprima.js"></script>
   <script src="/third_party/alertify.min.js"></script>
 
+  <% if (pair) { %>
+    <script src="/socket.io.js"></script>
+    <script>
+      var socket = io(location.pathname);
+      window.onload = function() {
+        editor.on('keyup', function() {
+          socket.emit('typing', editor.getValue());
+        });
+      };
+      socket.on('typing', function(data) {
+console.log('sup');
+        replaceEditorText(data);
+      });
+    </script>
+  <% } %>
+
 </body>
 </html>

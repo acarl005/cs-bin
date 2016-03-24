@@ -25,10 +25,10 @@ function setUpSocket(socket) {
     }
     socket.join(room);
   });
-  socket.on('sync', msg => {
+  socket.on('sync', function(msg) {
     io.to(msg.recipient).emit('sync', msg.code);
   });
-  socket.on('error', err => {
+  socket.on('error', function(err) {
     console.error(err);
     socket.disconnect();
   });

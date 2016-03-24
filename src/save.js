@@ -4,7 +4,7 @@ module.exports = function(editor) {
 
   $('#save').on('click', e => {
     localStorage.setItem(path, editor.getValue());
-    alertify.success('Progress saved.');
+    alertify.success('Progress saved on this computer.');
   });
 
   var saved = localStorage.getItem(path);

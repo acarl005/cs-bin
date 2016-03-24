@@ -32,6 +32,9 @@ function setUpSocket(socket) {
     console.error(err);
     socket.disconnect();
   });
+  socket.on('exec', function(name) {
+    socket.to(socket.room).broadcast.emit('exec', name);
+  });
 }
 namespaces.forEach(function(nsp) {
   nsp.on('connection', setUpSocket);

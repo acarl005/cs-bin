@@ -6,10 +6,16 @@ window.onload = function() {
     }
   });
 };
+
+alertify.prompt("What should we call you?", function(e, name) {
+  socket.name = name || "User " + Math.ceil(Math.random() * 100); // default name in case they enter blank
+});
+
 socket.emit('join', getQueryVariable('pair'));
 socket.on('typing', function(change) {
   editor.replaceRange(change.text.join('\n'), change.from, change.to, 'socket');
 });
+
 
 socket.on('getCode', function(recipient) {
   socket.emit('sync', { code: editor.getValue(), recipient: recipient });
@@ -22,6 +28,25 @@ socket.on('sync', function(code) {
     CodeMirror.Pos(editor.lastLine()),
     'socket'
   );
+});
+
+$('#execute').on('click', emitExec);
+
+//runs the code from the editor if ctrl+s is pressed
+$(window).on('keydown', e => {
+  if (e.ctrlKey && e.keyCode === 83) {
+    e.preventDefault();
+    emitExec();
+  }
+});
+
+function emitExec() {
+  socket.emit('exec', socket.name);
+}
+
+socket.on('exec', function(name) {
+  showConsole();
+  execute(name);
 });
 
 function getQueryVariable(variable) {

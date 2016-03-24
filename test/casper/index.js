@@ -14,14 +14,21 @@ casper.test.begin('test the UI', function(test) {
 
   casper.then(function() {
     test.assertDoesntExist('#console p', 'there should be no console ouput');
-    this.click('#execute');
-    test.assertSelectorHasText('#console p', 'Hello, world!', 'should print hello world to console');
-    this.evaluate(function() {
-      replaceEditorText("console.log(3)");
+    this.wait(1300, function() {
+      this.click('#execute');
+      test.assertSelectorHasText('#console p', 'Hello, world!', 'should print hello world to console');
     });
-    this.click('#execute');
-    test.assertSelectorHasText('#console p', '3', 'should see 3 in the console');
   });
+
+  // casper.then(function() {
+  //   this.evaluate(function() {
+  //     replaceEditorText("console.log(3)");
+  //   });
+  //   this.wait(1300, function() {
+  //     this.click('#execute');
+  //     test.assertSelectorHasText('#console p', '3', 'should see 3 in the console');
+  //   });
+  // });
 
   casper.then(function() {
     this.evaluate(function() {

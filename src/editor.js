@@ -5,9 +5,9 @@ spawnWorker();
 document.onready = function() {
 
   // initialize the editor
-  window.editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+  window.editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
     lineNumbers: true,
-    mode: "javascript",
+    mode: 'javascript',
     matchBrackets: true,
     autoCloseBrackets: true,
     keyMap: 'sublime',
@@ -15,9 +15,10 @@ document.onready = function() {
     theme: 'dracula'
   });
 
+
   // checks for errors if the editor changes. waits TIMEOUT ms after they finish typing
   var waiting;
-  editor.on("change", () => {
+  editor.on('change', () => {
     clearTimeout(waiting);
     waiting = setTimeout(updateErrors, TIMEOUT);
   });
@@ -97,7 +98,7 @@ function killWorker() {
 }
 
 function spawnWorker() {
-  window.webWorker = new Worker('worker.js');
+  window.webWorker = new Worker('js/worker.js');
   webWorker.onmessage = e => {
     if (e.data.message) {
       renderErr(e.data.lineNumber, e.data.message);

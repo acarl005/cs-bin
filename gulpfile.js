@@ -5,13 +5,11 @@ var watchify = require('watchify');
 var nodemon = require('gulp-nodemon');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
-var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var notify = require('gulp-notify');
 
 function handleErrors() {
-  // var args = Array.prototype.slice.call(arguments);
   notify.onError({
     title : 'Compile Error',
     message : '<%= error.message %>'
@@ -19,41 +17,53 @@ function handleErrors() {
   this.emit('end'); //keeps gulp from hanging on this task
 }
 
+gulp.task('default', ['sass:dev', 'sass:watch', 'scripts:dev', 'serve'])
+    .task('build', ['sass', 'scripts']);
 
-gulp.task('browserify', scripts)
-    .task('serve', serve);
+gulp.task('scripts:dev', () => scripts(true))
+    .task('scripts', () => scripts(false))
+    .task('serve', serve)
+    .task('sass', sassProd)
+    .task('sass:dev', sassDev)
+    .task('sass:watch', function() {
+      gulp.watch('./src/sass/*.scss', ['sass:dev']);
+    });
 
-function scripts() {
+function scripts(development) {
+  var transform = [
+    ['babelify', { blacklist: 'strict' }],
+  ];
+  if (!development) {
+    transform.push(['uglifyify']);
+  }
   var bundler = browserify({
     entries: ['./src/editor.js'],
-    transform: [
-      ['babelify', { blacklist: 'strict' }],
-      ['uglifyify']
-    ],
-    debug: true,
+    transform,
+    debug: development,
     cache: {},
     packageCache: {},
-    fullPaths: true
+    fullPaths: development
   });
-  var watcher = watchify(bundler);
+  bundler = development ? watchify(bundler) : bundler;
 
-  return watcher
-    .on('update', function() {
-      var updateStart = Date.now();
-      console.log('Updating!');
-      watcher.bundle()
+  function rebundle(){
+    var stream = bundler.bundle();
+    return stream
       .on('error', handleErrors)
       .pipe(source('bundle.js'))
-      .pipe(gulp.dest('./dest/'));
-      console.log('Updated!', (Date.now() - updateStart) + 'ms');
-    })
-    // Create the initial bundle when starting the task
-    .bundle()
-    .on('error', function(err) {
-      console.log('Error with compiling components', err.message);
-    })
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./dest/'));
+      .pipe(gulp.dest('dest/js/'));
+  }
+
+  bundler.on('update', function() {
+    var now = new Date;
+    var updateStart = now.valueOf();
+    var time = '\033[37m' + `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}` + '\033[0m';
+    rebundle();
+    console.log('[' + time + '] \033[32m[watchify] Updated!', (Date.now() - updateStart) + 'ms\033[0m');
+  });
+
+  // run it once the first time buildScript is called
+  return rebundle();
 }
 
 function serve() {
@@ -66,19 +76,20 @@ function serve() {
   });
 }
 
-gulp.task('sass', function () {
+function sassDev() {
   gulp.src('./src/sass/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('style.css'))
-    .pipe(minifyCSS())
     .pipe(rename('style.min.css'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dest/'));
-});
-gulp.task('sass:watch', function () {
-  gulp.watch('./src/sass/*.scss', ['sass']);
-});
+}
 
-
-gulp.task('default', ['sass', 'sass:watch', 'browserify', 'serve']);
+function sassProd() {
+  gulp.src('./src/sass/*.scss')
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(concat('style.css'))
+    .pipe(rename('style.min.css'))
+    .pipe(gulp.dest('./dest/'));
+}

@@ -17,7 +17,16 @@ function setUpSocket(socket) {
   });
   socket.on('join', function(room) {
     socket.room = room;
+    var existingRoom = this.adapter.rooms[room];
+    if (existingRoom) { // If someone is already here, we need to get the code they've typed
+      var pplInRoom = existingRoom.sockets || {};
+      var randomPerson = Object.keys(pplInRoom)[0];
+      io.to(randomPerson).emit('getCode', socket.id);
+    }
     socket.join(room);
+  });
+  socket.on('sync', msg => {
+    io.to(msg.recipient).emit('sync', msg.code);
   });
   socket.on('error', err => {
     console.error(err);

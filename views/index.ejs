@@ -32,8 +32,10 @@
 
       <div class="btn-group">
         <button id="execute" class="btn btn-primary" title="Ctrl + s">Run Code</button>
-        <button id="save" class="btn btn-primary">Save</button>
-        <button id="clear" class="btn btn-danger">Start Over</button>
+        <% if (!pair) { %>
+          <button id="save" class="btn btn-primary">Save</button>
+          <button id="clear" class="btn btn-danger">Start Over</button>
+        <% } %>
       </div>
     </div>
 
@@ -76,36 +78,13 @@
   </div>
 
   <script src="/third_party/jquery.min.js"></script>
-  <script src="/bundle.js"></script>
+  <script src="/js/bundle.js"></script>
   <script src="/third_party/esprima.js"></script>
   <script src="/third_party/alertify.min.js"></script>
 
   <% if (pair) { %>
     <script src="/socket.io.js"></script>
-    <script>
-      var socket = io(location.pathname);
-      window.onload = function() {
-        editor.on('keyup', function() {
-          socket.emit('typing', editor.getValue());
-        });
-      };
-      socket.emit('join', getQueryVariable('pair'));
-      socket.on('typing', function(data) {
-        replaceEditorText(data);
-      });
-
-      function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split('&');
-        for (var i = 0; i < vars.length; i++) {
-          var pair = vars[i].split('=');
-          if (decodeURIComponent(pair[0]) === variable) {
-            return decodeURIComponent(pair[1]);
-          }
-        }
-        return undefined;
-      }
-    </script>
+    <script src="/js/pair.js"></script>
   <% } %>
 
 </body>

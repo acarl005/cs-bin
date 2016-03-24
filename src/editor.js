@@ -50,7 +50,7 @@ function renderErr(lineNum, desc, colNum) {
     </div>
   `)[0];
   errWidgets.push(
-    editor.addLineWidget(lineNum - 1, msg, { coverGutter: false, noHScroll: true })
+    editor.addLineWidget(lineNum - 1, msg, { coverGutter: true, noHScroll: true })
   );
 }
 

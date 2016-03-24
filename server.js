@@ -25,10 +25,10 @@ function setUpSocket(socket) {
     }
     socket.join(room);
   });
-  socket.on('sync', msg => {
+  socket.on('sync', function(msg) {
     io.to(msg.recipient).emit('sync', msg.code);
   });
-  socket.on('error', err => {
+  socket.on('error', function(err) {
     console.error(err);
     socket.disconnect();
   });
@@ -57,9 +57,7 @@ if (process.env.NODE_ENV === 'production') {
   staticOptions.maxAge = 86400000; // one day
 }
 app.use(express.static('dest', staticOptions));
-app.get('/socket.io.js', function(req, res) {
-  res.sendFile(__dirname + '/node_modules/socket.io-client/socket.io.js');
-});
+
 
 fixTypos(['/callback'], '/callbacks');
 fixTypos(['/object', '/objects', '/classes'], '/oop');

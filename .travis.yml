@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '0.12'
+- '4.3.0'
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIAJQF7D3OMVQEBY7RA
@@ -12,5 +12,3 @@ deploy:
   bucket_name: elasticbeanstalk-us-west-2-809870753536
   on:
     repo: CodesmithLLC/cs-bin
-
-

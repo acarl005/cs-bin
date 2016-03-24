@@ -8,7 +8,7 @@ module.exports = function(editor) {
   });
 
   var saved = localStorage.getItem(path);
-  if (saved) {
+  if (saved && !location.search.match(/pair=/)) {
     replaceEditorText(saved);
   }
 

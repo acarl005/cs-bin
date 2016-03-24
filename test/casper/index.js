@@ -16,7 +16,6 @@ casper.test.begin('test the UI', function(test) {
     test.assertDoesntExist('#console p', 'there should be no console ouput');
     this.click('#execute');
     test.assertSelectorHasText('#console p', 'Hello, world!', 'should print hello world to console');
-    fill('console.log(3)');
     this.evaluate(function() {
       replaceEditorText("console.log(3)");
     });
@@ -87,7 +86,3 @@ casper.test.begin('test the UI', function(test) {
   });
 
 });
-
-function fill(code) {
-  casper.evaluate
-}

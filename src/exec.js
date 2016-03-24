@@ -11,7 +11,9 @@ module.exports = function(hasErrors) {
     });
 
     //runs the code from the editor if the button is clicked
-    $('#execute').on('click', execute);
+    $('#execute').on('click', e => {
+      execute(); // needs to have 0 arguments
+    });
 
     //runs the code from the editor if ctrl+s is pressed
     $(window).on('keydown', e => {
@@ -38,7 +40,7 @@ module.exports = function(hasErrors) {
 
   });
 
-  function execute() {
+  window.execute = function execute(name) {
     $('#console #output').empty();
     var errors = hasErrors();
     var error = errors[0];
@@ -55,7 +57,7 @@ module.exports = function(hasErrors) {
 
     var code = editor.getValue();
 
-    alertify.success(`Executing ${code.split('\n').length} lines of javascript.`);
+    alertify.success(`${name ? name + ' is' : 'You are '} executing ${code.split('\n').length} lines of JavaScript.`);
 
     wrapLogOutput(() => {
 
@@ -68,7 +70,7 @@ module.exports = function(hasErrors) {
 
     });
     return true;
-  }
+  };
 };
 
 // allow user to access previously entered commands

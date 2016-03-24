@@ -57,9 +57,7 @@ if (process.env.NODE_ENV === 'production') {
   staticOptions.maxAge = 86400000; // one day
 }
 app.use(express.static('dest', staticOptions));
-app.get('/socket.io.js', function(req, res) {
-  res.sendFile(__dirname + '/node_modules/socket.io-client/socket.io.js');
-});
+
 
 fixTypos(['/callback'], '/callbacks');
 fixTypos(['/object', '/objects', '/classes'], '/oop');

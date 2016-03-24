@@ -32,8 +32,10 @@
 
       <div class="btn-group">
         <button id="execute" class="btn btn-primary" title="Ctrl + s">Run Code</button>
-        <button id="save" class="btn btn-primary">Save</button>
-        <button id="clear" class="btn btn-danger">Start Over</button>
+        <% if (!pair) { %>
+          <button id="save" class="btn btn-primary">Save</button>
+          <button id="clear" class="btn btn-danger">Start Over</button>
+        <% } %>
       </div>
     </div>
 
@@ -75,10 +77,15 @@
     </footer>
   </div>
 
-  <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
-  <script src="/bundle.js"></script>
+  <script src="/third_party/jquery.min.js"></script>
+  <script src="/js/bundle.js"></script>
   <script src="/third_party/esprima.js"></script>
   <script src="/third_party/alertify.min.js"></script>
+
+  <% if (pair) { %>
+    <script src="/socket.io.js"></script>
+    <script src="/js/pair.js"></script>
+  <% } %>
 
 </body>
 </html>

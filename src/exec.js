@@ -41,6 +41,7 @@ module.exports = function(hasErrors) {
   });
 
   window.execute = function execute(name) {
+    if (waiting) return;
     $('#console #output').empty();
     var errors = hasErrors();
     var error = errors[0];

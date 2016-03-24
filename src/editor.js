@@ -17,7 +17,7 @@ document.onready = function() {
 
 
   // checks for errors if the editor changes. waits TIMEOUT ms after they finish typing
-  var waiting;
+  window.waiting = null;
   editor.on('change', () => {
     clearTimeout(waiting);
     waiting = setTimeout(updateErrors, TIMEOUT);
@@ -56,6 +56,7 @@ function renderErr(lineNum, desc, colNum) {
 
 // do another check for errors
 function updateErrors() {
+  waiting = null;
   var code = editor.getValue();
 
   errWidgets.forEach(err => {

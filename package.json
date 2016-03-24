@@ -6,14 +6,16 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "./node_modules/.bin/gulp",
-    "test": "./test/runcasper test/casper"
+    "test": "exit 0",
+    "casper": "./test/runcasper test/casper"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.6.1",
     "ejs": "^2.3.3",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
@@ -21,7 +23,6 @@
     "casperjs": "^1.1.0-beta3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
-    "gulp-minify-css": "^1.2.1",
     "gulp-nodemon": "^2.0.4",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
